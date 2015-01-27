@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://rodrigodlima.github.io/atom.xml" rel="self"/>
-  <link href="http://rodrigodlima.github.io/"/>
-  <updated>2015-01-27T17:57:58-02:00</updated>
-  <id>http://rodrigodlima.github.io/</id>
+  <title><![CDATA[rodrigolima.blog.br]]></title>
+  <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
+  <link href="http://rodrigolima.blog.br/"/>
+  <updated>2015-01-27T18:03:09-02:00</updated>
+  <id>http://rodrigolima.blog.br/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Primeiro Post]]></title>
-    <link href="http://rodrigodlima.github.io/blog/2015/01/27/primeiro-post/"/>
+    <link href="http://rodrigolima.blog.br/blog/2015/01/27/primeiro-post/"/>
     <updated>2015-01-27T17:44:47-02:00</updated>
-    <id>http://rodrigodlima.github.io/blog/2015/01/27/primeiro-post</id>
+    <id>http://rodrigolima.blog.br/blog/2015/01/27/primeiro-post</id>
     <content type="html"><![CDATA[<p>Sempre tive vontade de ter meu blog e publicar coisas que tenho vontade, principalmente na área de TI, já que atuo a algum tempo como Analista de Infraestrutura, e já passei por muita coisa e que seria interessante compartilhar e também algumas coisas de interesse pessoal e alguns hobbies, tais como dicas de viagens, esportes, etc. ;-)
 Porém, sempre me chateava tendo que criar uma infra para publicar qualquer coisa simples, até mesmo um texto.
 Sempre tinha que subir um Wordpress da vida, um Apache, etc. E dava mais trabalho ainda para escrever um post de maneira
