@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-01-28T15:34:46-02:00</updated>
+  <updated>2015-01-28T15:47:58-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -135,6 +135,14 @@ Creating new post: source/_posts/2015-01-28-instalacao-e-configuracao-octopress.
 <p>$ rake deploy</p></blockquote>
 
 <p>Cada vez que quiser criar um novo post, siga esses passos. Simples não? ;-)</p>
+
+<h3>Custom Domains</h3>
+
+<p>Conforme citei no começo do post, o Github oferece uma forma de customizar o seu domínio, caso você deseje. Por exemplo, eu possuo o domínio rodrigolima.blog.br registrado e gostaria que meu &ldquo;blog&rdquo; que acabamos de ver hospedados no Github, seja acessado através do meu domínio &ldquo;rodrigolima.blog.br&rdquo;. É muito simples de fazer e também está da documentação do Octopress.</p>
+
+<blockquote><p>echo &lsquo;rodrigolima.blog.br&rsquo; >> source/CNAME</p></blockquote>
+
+<p>Agora, crie um registro &ldquo;A&rdquo; no seu DNS server apontando para o IP 192.30.252.153 ou 192.30.252.154 que são os IP&rsquo;s do Github</p>
 ]]></content>
   </entry>
   
