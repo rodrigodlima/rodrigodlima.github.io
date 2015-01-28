@@ -123,6 +123,13 @@ Após fazer a edição que você deseja, salve o arquivo. E agora basta gerar a 
 >$ rake generate
 
 >$ rake deploy
-
 	
 Cada vez que quiser criar um novo post, siga esses passos. Simples não? ;-)
+
+### Custom Domains
+
+Conforme citei no começo do post, o Github oferece uma forma de customizar o seu domínio, caso você deseje. Por exemplo, eu possuo o domínio rodrigolima.blog.br registrado e gostaria que meu "blog" que acabamos de ver hospedados no Github, seja acessado através do meu domínio "rodrigolima.blog.br". É muito simples de fazer e também está da documentação do Octopress.
+
+> echo 'rodrigolima.blog.br' >> source/CNAME
+
+Agora, crie um registro "A" no seu DNS server apontando para o IP 192.30.252.153 ou 192.30.252.154 que são os IP's do Github
