@@ -105,18 +105,23 @@
 
 <p>Obs: Já baixar diretamente no seu diretório do Dropbox, geralmente em ~/Dropbox</p>
 
-<blockquote><p>$ pwd
-/home/rodrigo.lima/Dropbox/Blog</p>
+<blockquote><p>$ pwd</p>
 
-<p>$ cd octopress/
-$ pwd
-/home/rodrigo.lima/Dropbox/Blog/octopress</p></blockquote>
+<p>/home/rodrigo.lima/Dropbox/Blog</p>
+
+<p>$ cd octopress/</p>
+
+<p>$ pwd</p>
+
+<p>/home/rodrigo.lima/Dropbox/Blog/octopress</p></blockquote>
 
 <p><strong> Instalar também algumas dependências do Ruby necessárias: </strong></p>
 
-<blockquote><p>$ gem install execjs
-$ gem install bundler
-$ bundle install</p></blockquote>
+<blockquote><p>$ gem install execjs</p>
+
+<p>$ gem install bundler</p>
+
+<p>$ bundle install</p></blockquote>
 
 <p><strong> Instalar e configurar agora o tema default do Octopress </strong></p>
 
@@ -144,37 +149,38 @@ Meu usuário no Gitbug é rodrigodlima, logo, ele irá disponibilizar meu blog e
 
 <p>Tanto no Fedora 20 como no CentOS 7 eu precisei editar o arquivo GemFile do Octopress e adicionar o seguinte:</p>
 
-<p> <strong> gem &lsquo; json&rsquo; </strong></p>
+<pre><code> gem 'json'
+</code></pre>
 
-<blockquote><p>$ cat Gemfile</p>
+<blockquote><p>$ cat Gemfile</p></blockquote>
 
-<p>source &ldquo;<a href="https://rubygems.org">https://rubygems.org</a>&rdquo;</p>
-
-<p>group :development do
-gem &lsquo;rake&rsquo;, &lsquo;~> 10.0&rsquo;
-gem &lsquo;jekyll&rsquo;, &lsquo;~> 2.0&rsquo;
-gem &lsquo;octopress-hooks&rsquo;, &lsquo;~> 2.2&rsquo;
-gem &lsquo;octopress-date-format&rsquo;, &lsquo;~> 2.0&rsquo;
-gem &lsquo;jekyll-sitemap&rsquo;
-gem &lsquo;rdiscount&rsquo;, &lsquo;~> 2.0&rsquo;
-<strong>gem &lsquo;json&rsquo;</strong>
-gem &lsquo;RedCloth&rsquo;, &lsquo;~> 4.2.9&rsquo;
-gem &lsquo;haml&rsquo;, &lsquo;~> 4.0&rsquo;
-gem &lsquo;compass&rsquo;, &lsquo;~> 1.0.1&rsquo;
-gem &lsquo;sass-globbing&rsquo;, &lsquo;~> 1.0.0&rsquo;
-gem &lsquo;rubypants&rsquo;, &lsquo;~> 0.2.0&rsquo;
-gem &lsquo;rb-fsevent&rsquo;, &lsquo;~> 0.9&rsquo;
-gem &lsquo;stringex&rsquo;, &lsquo;~> 1.4.0&rsquo;
-end</p>
-
-<p>gem &lsquo;sinatra&rsquo;, &lsquo;~> 1.4.2&rsquo;</p></blockquote>
+<pre><code>source "https://rubygems.org"
+group :development do
+    gem 'rake', '~&gt; 10.0'
+    gem 'jekyll', '~&gt; 2.0'
+    gem 'octopress-hooks', '~&gt; 2.2'
+    gem 'octopress-date-format', '~&gt; 2.0'
+    gem 'jekyll-sitemap'
+    gem 'rdiscount', '~&gt; 2.0'
+    gem 'json'
+    gem 'RedCloth', '~&gt; 4.2.9'
+    gem 'haml', '~&gt; 4.0'
+    gem 'compass', '~&gt; 1.0.1'
+    gem 'sass-globbing', '~&gt; 1.0.0'
+    gem 'rubypants', '~&gt; 0.2.0'
+    gem 'rb-fsevent', '~&gt; 0.9'
+    gem 'stringex', '~&gt; 1.4.0'
+end
+    gem 'sinatra', '~&gt; 1.4.2'
+</code></pre>
 
 <p>Sem essa linha, dá erro no comando &ldquo;rake generate&rdquo;.</p>
 
 <p>Agora sim:</p>
 
-<blockquote><p>$ rake generate
-$ rake deploy</p></blockquote>
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
 
 <p>Esses dois comandos irão gerar o blog e fazer o primeiro commit para o Github. Porém, você precisa agora gerar um novo post para que seja publicado. E agora vem a vantagem de utilizar o octopress. É muito simples criar um novo post. Quer ver?</p>
 
@@ -182,18 +188,20 @@ $ rake deploy</p></blockquote>
 
 <p>Para criar um novo post é muito simples:</p>
 
-<blockquote><p>$ rake new_post[&ldquo;Instalação e Configuração Octopress&rdquo;]
-mkdir -p source/<em>posts
-Creating new post: source/</em>posts/2015-01-28-instalacao-e-configuracao-octopress.markdown</p></blockquote>
+<pre><code>$ rake new_post["Instalação e Configuração Octopress"]
+mkdir -p source/_posts
+Creating new post: source/_posts/2015-01-28-instalacao-e-configuracao-octopress.markdown
+</code></pre>
 
 <p>Veja que ele criou o post no caminho source/_posts/2015-01-28-instalacao-e-configuracao-octopress.markdown. Agora basta você editar o arquivo com o seu editor preferdo de markdown. Eu utilizo o Ramarkable:</p>
 
-<p><a href="http://remarkableapp.net/download.html">http://remarkableapp.net/download.html</a></p>
+<p><a href="http://remarkableapp.net/download.html">Remarkable</a></p>
 
 <p>Após fazer a edição que você deseja, salve o arquivo. E agora basta gerar a página e enviar ao Gitbub. Esses dois comandos abaixo fazem isso pra você:</p>
 
-<blockquote><p>$ rake generate
-$ rake deploy</p></blockquote>
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
 
 <p>Cada vez que quiser criar um novo post, siga esses passos. Simples não? ;-)</p>
 </div>
