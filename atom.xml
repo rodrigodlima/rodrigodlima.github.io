@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-01-28T18:18:30-02:00</updated>
+  <updated>2015-01-28T19:17:03-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Viagem De Férias a Maceió]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/"/>
+    <updated>2015-01-28T18:57:00-02:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio</id>
+    <content type="html"><![CDATA[<h3>Mais alguns dias e&hellip;. Férias!!!</h3>
+
+<p>Buenas, quem me conhece sabe o quanto estou esperando por este momento. Nos últimos 4 anos, por questões financeiras e pessoais não consegui aproveitar em nada as minhas férias. As férias só eram usadas para pagar contas&hellip; e em muitas delas continuei trabalhando. Pois bem, agora chegou a hora de aproveitar um pouco, conhecer novos lugares, pessoas, culturas, enfim, tudo o que uma viagem pode te proporcionar.</p>
+
+<p>O local escolhido? Maceió - Alagoas.</p>
+
+<p>No Nordeste conheço apenas Natal/RN, que por sinal é maravilhosa. Mas depois de muita pesquisa acabei escolhendo conhecer Maceió e seus arredores.</p>
+
+<p>Essa viagem inclusive foi o que mais me motivou para criar esse blog já que a minha idéia é registrar toda a viagem. Como estou começando a usar o Octopress, antes de viajar já vou ir testando uma maneira fácil de fazer isso.</p>
+
+<p>Então, agora é só esperar mais 1 semaninha de trabalho antes de conhecer esse maravilhoso lugar&hellip;</p>
+
+<p><img src="http://rodrigolima.blog.br/images/maceio1.jpg" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Instalação E Configuração Octopress]]></title>
