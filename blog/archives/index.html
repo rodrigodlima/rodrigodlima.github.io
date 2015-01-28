@@ -9,8 +9,9 @@
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content=" Blog Archive 2015 Primeiro Post
-Jan 27 2015 Recent Posts Primeiro Post ">
+  <meta name="description" content="Blog Archive 2015 Instalação E Configuração Octopress
+Jan 28 2015 Primeiro Post
+Jan 27 2015 Recent Posts Instalação E Configuração Octopress &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +82,16 @@ Jan 27 2015 Recent Posts Primeiro Post ">
 
 <article>
   
+<h1><a href="/blog/2015/01/28/instalacao-e-configuracao-octopress/">Instalação E Configuração Octopress</a></h1>
+<time datetime="2015-01-28T11:40:58-02:00" pubdate><span class='month'>Jan</span> <span class='day'>28</span> <span class='year'>2015</span></time>
+
+
+</article>
+
+
+
+<article>
+  
 <h1><a href="/blog/2015/01/27/primeiro-post/">Primeiro Post</a></h1>
 <time datetime="2015-01-27T17:44:47-02:00" pubdate><span class='month'>Jan</span> <span class='day'>27</span> <span class='year'>2015</span></time>
 
@@ -101,10 +112,43 @@ Jan 27 2015 Recent Posts Primeiro Post ">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/28/instalacao-e-configuracao-octopress/">Instalação E Configuração Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/27/primeiro-post/">Primeiro Post</a>
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rodrigodlima">@rodrigodlima</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rodrigodlima',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -126,6 +170,15 @@ Jan 27 2015 Recent Posts Primeiro Post ">
   
 
 
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 

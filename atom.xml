@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-01-28T11:17:01-02:00</updated>
+  <updated>2015-01-28T13:57:37-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,123 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Instalação E Configuração Octopress]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2015/01/28/instalacao-e-configuracao-octopress/"/>
+    <updated>2015-01-28T11:40:58-02:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2015/01/28/instalacao-e-configuracao-octopress</id>
+    <content type="html"><![CDATA[<p>Eu utilizo geralmente 2 ou 3 equipamentos para escrever meus posts, utilizo meu notebook do trabalho, meu MacBook pessoal e por vezes meu computador em casa. Com isso, achei interessante disponibilizar o código do meu blog em algum drive virtual na nuvem, assim eu consigo postar qualquer artigo em qualquer dispositivo que estiver utilizando, bastando apenas deixá-lo configurado para tal tarefa. Como já utilizo o Dropbox a algum tempo, achei interessante manter meu blog lá.</p>
+
+<p>O objetivo aqui é explicar o processo de instalação e configuração do Octopress. A maioria dos passos aqui estão na documentação oficial do Octopress, porém tem alguns detalhes a mais no qual passei algum trabalho e é importante destacar aqui.</p>
+
+<p>Vamos lá então.</p>
+
+<p><strong> Instalar as dependências do Octopress: </strong></p>
+
+<blockquote><p>$ sudo yum install git ruby rubygems ruby-devel</p></blockquote>
+
+<p>Na documentação do Octopress é sugerido a instalação de algum ExecJS runtime JavaScript. Um deles é o nodejs. No caso do Fedora, é necessário instalar o pacote RPM, apenas instalando o Gem não funciona. É necessário também ter instalado e configurado o repositório EPEL</p>
+
+<blockquote><p>$ sudo yum install nodejs</p></blockquote>
+
+<p><strong> Baixar a última versão do Octopress </strong></p>
+
+<p>Obs: Já baixar diretamente no seu diretório do Dropbox, geralmente em ~/Dropbox</p>
+
+<blockquote><p>$ pwd
+/home/rodrigo.lima/Dropbox/Blog</p>
+
+<p>$ cd octopress/
+$ pwd
+/home/rodrigo.lima/Dropbox/Blog/octopress</p></blockquote>
+
+<p><strong> Instalar também algumas dependências do Ruby necessárias: </strong></p>
+
+<blockquote><p>$ gem install execjs
+$ gem install bundler
+$ bundle install</p></blockquote>
+
+<p><strong> Instalar e configurar agora o tema default do Octopress </strong></p>
+
+<blockquote><p>$ rake install</p></blockquote>
+
+<p>Ok, o Octopress neste momento está pronto para ser utilizado.
+O próximo passo da documentação é como fazer o deploy do site. Existem algumas várias formas de se fazer o deploy, mas escolhi fazer o deploy no Github. O Github oferece um serviço de hospedagem free, e não vi necessidade de utilizar ou contratar um VPS em algum provedor, já que com o Octopress não irei precisar de banco de dados (Mysql, etc.), ou seja, será gerado apenas páginas estáticas e para isso o Github está mais do que suficiente.</p>
+
+<h3>Fazendo o deploy para o Github Pages</h3>
+
+<p>Caso você ainda não possua, terá que criar uma conta do Github. Faça isso caso você não tenha.
+Meu usuário no Gitbug é rodrigodlima, logo, ele irá disponibilizar meu blog em <a href="http://rodrigodlima.github.io.">http://rodrigodlima.github.io.</a> Antigamente, ele disponibilizada no domínio &ldquo;.com&rdquo;, porém agora utiliza o &ldquo;.io&rdquo;.</p>
+
+<p>Crie um novo repositório no seguinte formato: username.github.io, onde username é o seu usuário no Github. No meu caso, ficou rodrigodlima.github.io. Caso você tenha algum domínio registrado, o Github oferece uma forma de apontar o seu domínio para lá, depois explico melhor como fazer isso.</p>
+
+<p>Agora, vamos começar a ver algumas vantagens em utilizar o Octopress. Ele já disponibiliza alguns scripts para facilitar a configuração. Então, execute:</p>
+
+<blockquote><p>$ rake setup_github_pages</p></blockquote>
+
+<p>O script irá solicitar a você a URL do seu repositório git, com isso informe conforme solicitado. Ex: git@github.com:rodrigodlima/rodrigodlima.github.io.git.</p>
+
+<p><strong>Importante:</strong> É necessário inserir a sua chave pública SSH para conseguir fazer o deploy. Caso você não possua uma chave pública SSH, consulte a documentação do Github para inserir a sua chave:</p>
+
+<p><a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
+
+<p>Tanto no Fedora 20 como no CentOS 7 eu precisei editar o arquivo GemFile do Octopress e adicionar o seguinte:</p>
+
+<p> <strong> gem &lsquo; json&rsquo; </strong></p>
+
+<blockquote><p>$ cat Gemfile</p>
+
+<p>source &ldquo;<a href="https://rubygems.org">https://rubygems.org</a>&rdquo;</p>
+
+<p>group :development do
+  gem &lsquo;rake&rsquo;, &lsquo;~> 10.0&rsquo;
+  gem &lsquo;jekyll&rsquo;, &lsquo;~> 2.0&rsquo;
+  gem &lsquo;octopress-hooks&rsquo;, &lsquo;~> 2.2&rsquo;
+  gem &lsquo;octopress-date-format&rsquo;, &lsquo;~> 2.0&rsquo;
+  gem &lsquo;jekyll-sitemap&rsquo;
+  gem &lsquo;rdiscount&rsquo;, &lsquo;~> 2.0&rsquo;
+  <strong>gem &lsquo;json&rsquo;</strong>
+  gem &lsquo;RedCloth&rsquo;, &lsquo;~> 4.2.9&rsquo;
+  gem &lsquo;haml&rsquo;, &lsquo;~> 4.0&rsquo;
+  gem &lsquo;compass&rsquo;, &lsquo;~> 1.0.1&rsquo;
+  gem &lsquo;sass-globbing&rsquo;, &lsquo;~> 1.0.0&rsquo;
+  gem &lsquo;rubypants&rsquo;, &lsquo;~> 0.2.0&rsquo;
+  gem &lsquo;rb-fsevent&rsquo;, &lsquo;~> 0.9&rsquo;
+  gem &lsquo;stringex&rsquo;, &lsquo;~> 1.4.0&rsquo;
+end</p>
+
+<p>gem &lsquo;sinatra&rsquo;, &lsquo;~> 1.4.2&rsquo;</p></blockquote>
+
+<p>Sem essa linha, dá erro no comando &ldquo;rake generate&rdquo;.</p>
+
+<p>Agora sim:</p>
+
+<blockquote><p>$ rake generate
+$ rake deploy</p></blockquote>
+
+<p>Esses dois comandos irão gerar o blog e fazer o primeiro commit para o Github. Porém, você precisa agora gerar um novo post para que seja publicado. E agora vem a vantagem de utilizar o octopress. É muito simples criar um novo post. Quer ver?</p>
+
+<h2>Criando o primeiro post</h2>
+
+<p>Para criar um novo post é muito simples:</p>
+
+<blockquote><p>$ rake new_post[&ldquo;Instalação e Configuração Octopress&rdquo;]
+mkdir -p source/<em>posts
+Creating new post: source/</em>posts/2015-01-28-instalacao-e-configuracao-octopress.markdown</p></blockquote>
+
+<p>Veja que ele criou o post no caminho source/_posts/2015-01-28-instalacao-e-configuracao-octopress.markdown. Agora basta você editar o arquivo com o seu editor preferdo de markdown. Eu utilizo o Ramarkable:</p>
+
+<p><a href="http://remarkableapp.net/download.html">http://remarkableapp.net/download.html</a></p>
+
+<p>Após fazer a edição que você deseja, salve o arquivo. E agora basta gerar a página e enviar ao Gitbub. Esses dois comandos abaixo fazem isso pra você:</p>
+
+<blockquote><p>$ rake generate
+$ rake deploy</p></blockquote>
+
+<p>Cada vez que quiser criar um novo post, siga esses passos. Simples não? ;-)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Primeiro Post]]></title>
