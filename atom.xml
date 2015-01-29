@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-01-28T19:17:03-02:00</updated>
+  <updated>2015-01-28T23:04:13-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress No Mac OS X]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x/"/>
+    <updated>2015-01-28T22:54:46-02:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x</id>
+    <content type="html"><![CDATA[<p>Acabei de realizar a configuração do Octopress no meu Macbook Pro e agora estou fazendo o primeiro post com ele para testar. A princípio, achei menos complicado de configurar no OSX do que no Fedora. É necessário instalar o <strong><em>Git</em></strong> e o <strong><em>Ruby</em></strong> através do <strong><em>RVM</em></strong> e são passos manuais.</p>
+
+<p>Porém também é possível fazer utilizando o <strong><em>Homebrew</em></strong>, que é um gerenciador de pacotes para OSX, tal como o macports e tal como o YUM no caso de distribuições Linux Red Hat based.</p>
+
+<p>Se tudo ocorrer bem, em seguida posto como fazer a configuração do Octopress no OSX.</p>
+
+<p>Até mais!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Viagem De Férias a Maceió]]></title>
