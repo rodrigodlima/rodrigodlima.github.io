@@ -4,7 +4,7 @@
 
 url: http://rodrigolima.blog.br
 title: rodrigolima.blog.br
-subtitle: Tecnologia da Informação, hobbies, dicas e nerdices :-P
+subtitle: [ $echo something | sed 's/something/Vida geek, Tecnologia da Informação, cotidiano e afins/g' ]
 author: Rodrigo de Lima Silva
 simple_search: https://www.google.com/search
 description:
