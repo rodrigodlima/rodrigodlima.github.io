@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-01-30T14:13:17-02:00</updated>
+  <updated>2015-04-08T20:03:13-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Limpando O Cache Do Java No Linux]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/"/>
+    <updated>2015-04-08T17:54:20-03:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux</id>
+    <content type="html"><![CDATA[<p>Essa é uma pequena dica para limpar o cache do Java no Linux. Geralmente é necessário também adicionar alguma
+exceção de segurança dos applets Java de terceiros.</p>
+
+<p>É simples. Basta abrir o &ldquo;<strong>Java Control Panel</strong>&rdquo;, para isso, digite o comando &ldquo;<strong>javaws -viewer</strong>&rdquo; no terminal.</p>
+
+<pre><code>$ javaws -viewer
+</code></pre>
+
+<p>Agora basta clicar no botão Settings em &ldquo;Temporary Internet Files&rdquo; e fazer a exclusão do cache.</p>
+
+<p>Existem outras configurações de Java que podem ser realizadas no <strong>Java Control Center</strong>, porém não vou entrar em detalhes aqui.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress No Mac OS X]]></title>

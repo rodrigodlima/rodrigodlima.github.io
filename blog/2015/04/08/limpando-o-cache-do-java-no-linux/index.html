@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Viagem De Férias a Maceió - rodrigolima.blog.br</title>
+  <title>Limpando O Cache Do Java No Linux - rodrigolima.blog.br</title>
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Mais alguns dias e&hellip;. Férias!!! Buenas, quem me conhece sabe o quanto estou esperando por este momento. Nos últimos 4 anos, por questões &hellip;">
+  <meta name="description" content="Essa é uma pequena dica para limpar o cache do Java no Linux. Geralmente é necessário também adicionar alguma
+exceção de segurança dos applets Java &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/">
+  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="rodrigolima.blog.br" type="application/atom+xml">
@@ -69,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">Viagem De Férias a Maceió</h1>
+      <h1 class="entry-title">Limpando O Cache Do Java No Linux</h1>
     
     
       <p class="meta">
@@ -78,26 +79,24 @@
 
 
 
-<time class='entry-date' datetime='2015-01-28T18:57:00-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:57 pm</span></time>
+<time class='entry-date' datetime='2015-04-08T17:54:20-03:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:54 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h3>Mais alguns dias e&hellip;. Férias!!!</h3>
+<div class="entry-content"><p>Essa é uma pequena dica para limpar o cache do Java no Linux. Geralmente é necessário também adicionar alguma
+exceção de segurança dos applets Java de terceiros.</p>
 
-<p>Buenas, quem me conhece sabe o quanto estou esperando por este momento. Nos últimos 4 anos, por questões financeiras e pessoais não consegui aproveitar em nada as minhas férias. As férias só eram usadas para pagar contas&hellip; e em muitas delas continuei trabalhando. Pois bem, agora chegou a hora de aproveitar um pouco, conhecer novos lugares, pessoas, culturas, enfim, tudo o que uma viagem pode te proporcionar.</p>
+<p>É simples. Basta abrir o &ldquo;<strong>Java Control Panel</strong>&rdquo;, para isso, digite o comando &ldquo;<strong>javaws -viewer</strong>&rdquo; no terminal.</p>
 
-<p>O local escolhido? Maceió - Alagoas.</p>
+<pre><code>$ javaws -viewer
+</code></pre>
 
-<p>No Nordeste conheço apenas Natal/RN, que por sinal é maravilhosa. Mas depois de muita pesquisa acabei escolhendo conhecer Maceió e seus arredores.</p>
+<p>Agora basta clicar no botão Settings em &ldquo;Temporary Internet Files&rdquo; e fazer a exclusão do cache.</p>
 
-<p>Essa viagem inclusive foi o que mais me motivou para criar esse blog já que a minha idéia é registrar toda a viagem. Como estou começando a usar o Octopress, antes de viajar já vou ir testando uma maneira fácil de fazer isso.</p>
-
-<p>Então, agora é só esperar mais 1 semaninha de trabalho antes de conhecer esse maravilhoso lugar&hellip;</p>
-
-<p><img src="/images/maceio1.jpg" /></p>
+<p>Existem outras configurações de Java que podem ser realizadas no <strong>Java Control Center</strong>, porém não vou entrar em detalhes aqui.</p>
 </div>
 
 
@@ -113,7 +112,7 @@
 
 
 
-<time class='entry-date' datetime='2015-01-28T18:57:00-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:57 pm</span></time>
+<time class='entry-date' datetime='2015-04-08T17:54:20-03:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:54 pm</span></time>
       
 
 
@@ -121,7 +120,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/" >Tweet</a>
   
   
   
@@ -132,10 +131,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/01/28/instalacao-e-configuracao-octopress/" title="Previous Post: Instalação e Configuração Octopress">&laquo; Instalação e Configuração Octopress</a>
+        <a class="basic-alignment left" href="/blog/2015/01/28/octopress-no-mac-os-x/" title="Previous Post: Octopress no Mac OS X">&laquo; Octopress no Mac OS X</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/01/28/octopress-no-mac-os-x/" title="Next Post: Octopress no Mac OS X">Octopress no Mac OS X &raquo;</a>
       
     </p>
   </footer>
