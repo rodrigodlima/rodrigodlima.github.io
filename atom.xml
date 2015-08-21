@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-04-08T20:37:48-03:00</updated>
+  <updated>2015-08-21T17:43:39-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[De Volta Ao Blog]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2015/08/21/de-volta-ao-blog/"/>
+    <updated>2015-08-21T17:39:20-03:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2015/08/21/de-volta-ao-blog</id>
+    <content type="html"><![CDATA[<p>Buenas,</p>
+
+<p>Tive um tempo &ldquo;fora do ar&rdquo; e acabei deixando o projeto do Blog de lado. Esta via da TI tem seus altos baixos, andei meio desmotivado nos últimos meses e
+deixando várias coisas de lado, e o Blog era uma delas.
+Tenho várias coisas pra postar, mas vamos com calma. Meu próximo post será uma história sobre as minhas férias, que fiquei de postar lá em Fevereiro e até
+agora nada :-(</p>
+
+<p>Depois, vamos falar um pouco sobre Gerência de Configurações, para manter tudo sobre controle na tua infra de servidores Linux. Vamos falar mais
+especificamente sobre o uso do Puppet.</p>
+
+<p>Até breve!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Limpando O Cache Do Java No Linux]]></title>
