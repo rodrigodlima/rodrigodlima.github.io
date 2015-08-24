@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-08-24T15:09:54-03:00</updated>
+  <updated>2015-08-24T15:13:22-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Justificando O Texto No Octopress]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2015/08/24/justificando-o-texto-no-octopress/"/>
+    <updated>2015-08-24T15:11:43-03:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2015/08/24/justificando-o-texto-no-octopress</id>
+    <content type="html"><![CDATA[<p>Essa é uma pequena dica, mas é interessante deixar registrado. Eu gosto de deixar os textos das publicações sempre “alinhados”. Por default, isso não ocorre com o Octopress. Mas é bem simples de corrigir isso.</p>
+
+<p>Basta editar o arquivo CSS, isso facilita, pois ela regra css valerá para todos os posts, sem necessidade de editar cada página.</p>
+
+<p>Abra com seu editor preferido o arquivo “octopress/sass/custom/_style.css” e adicione o seguinte código:</p>
+
+<pre><code>article p{
+        text-align:justify;
+}
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[De Volta Ao Blog]]></title>

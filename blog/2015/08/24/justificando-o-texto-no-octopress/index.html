@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Octopress No Mac OS X - rodrigolima.blog.br</title>
+  <title>Justificando O Texto No Octopress - rodrigolima.blog.br</title>
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Acabei de realizar a configuração do Octopress no meu Macbook Pro e agora estou fazendo o primeiro post com ele para testar. A princípio, achei menos &hellip;">
+  <meta name="description" content="Essa é uma pequena dica, mas é interessante deixar registrado. Eu gosto de deixar os textos das publicações sempre “alinhados”. Por default, isso não &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x/">
+  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2015/08/24/justificando-o-texto-no-octopress/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="rodrigolima.blog.br" type="application/atom+xml">
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">Octopress No Mac OS X</h1>
+      <h1 class="entry-title">Justificando O Texto No Octopress</h1>
     
     
       <p class="meta">
@@ -78,20 +78,23 @@
 
 
 
-<time class='entry-date' datetime='2015-01-28T22:54:46-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:54 pm</span></time>
+<time class='entry-date' datetime='2015-08-24T15:11:43-03:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:11 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Acabei de realizar a configuração do Octopress no meu Macbook Pro e agora estou fazendo o primeiro post com ele para testar. A princípio, achei menos complicado de configurar no OSX do que no Fedora. É necessário instalar o <strong><em>Git</em></strong> e o <strong><em>Ruby</em></strong> através do <strong><em>RVM</em></strong> e são passos manuais.</p>
+<div class="entry-content"><p>Essa é uma pequena dica, mas é interessante deixar registrado. Eu gosto de deixar os textos das publicações sempre “alinhados”. Por default, isso não ocorre com o Octopress. Mas é bem simples de corrigir isso.</p>
 
-<p>Porém também é possível fazer utilizando o <strong><em>Homebrew</em></strong>, que é um gerenciador de pacotes para OSX, tal como o macports e tal como o YUM no caso de distribuições Linux Red Hat based.</p>
+<p>Basta editar o arquivo CSS, isso facilita, pois ela regra css valerá para todos os posts, sem necessidade de editar cada página.</p>
 
-<p>Se tudo ocorrer bem, em seguida posto como fazer a configuração do Octopress no OSX.</p>
+<p>Abra com seu editor preferido o arquivo “octopress/sass/custom/_style.css” e adicione o seguinte código:</p>
 
-<p>Até mais!</p>
+<pre><code>article p{
+        text-align:justify;
+}
+</code></pre>
 </div>
 
 
@@ -107,7 +110,7 @@
 
 
 
-<time class='entry-date' datetime='2015-01-28T22:54:46-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:54 pm</span></time>
+<time class='entry-date' datetime='2015-08-24T15:11:43-03:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:11 pm</span></time>
       
 
 
@@ -115,7 +118,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2015/08/24/justificando-o-texto-no-octopress/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2015/08/24/justificando-o-texto-no-octopress/" >Tweet</a>
   
   
   
@@ -126,10 +129,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/01/28/viagem-de-ferias-a-maceio/" title="Previous Post: Viagem de Férias a Maceió">&laquo; Viagem de Férias a Maceió</a>
+        <a class="basic-alignment left" href="/blog/2015/08/21/de-volta-ao-blog/" title="Previous Post: De volta ao Blog">&laquo; De volta ao Blog</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/" title="Next Post: Limpando o cache do Java no Linux">Limpando o cache do Java no Linux &raquo;</a>
       
     </p>
   </footer>
