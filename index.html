@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.10.4 ( &hellip;">
+  <meta name="description" content="Por default, quando é criado um novo post no Octopress, ele cria sempre com a primeira letra de cada palavra em maiúsculo (Uppercase). Isso me &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/26/uppercase-no-titulo-em-novos-posts-no-octopress/">Uppercase no título em novos posts no Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-26T19:49:56-03:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:49 pm</span></time>
+        
+           | <a href="/blog/2015/08/26/uppercase-no-titulo-em-novos-posts-no-octopress/#disqus_thread"
+             data-disqus-identifier="http://rodrigolima.blog.br/blog/2015/08/26/uppercase-no-titulo-em-novos-posts-no-octopress/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Por default, quando é criado um novo post no Octopress, ele cria sempre com a primeira letra de cada palavra em maiúsculo (Uppercase). Isso me incomodou um pouco, por que fica visualmente bem feio. Por exemplo,
+eu criei esta página da seguinte forma:</p>
+
+<pre><code>$ rake new_post["Uppercase no título em novos posts no Octopress"]
+</code></pre>
+
+<p>Com isso, ele irá exibir o título da seguinte forma ao fazer o deploy:</p>
+
+<blockquote><p>&ldquo;Uppercase No Título Em Novos Posts No Octopress&rdquo;</p></blockquote>
+
+<p>Eu particularmente acho visivelmente bem feio. Dei uma pesquisada e a solução é muito simple. Edite o arquivo octopress/_config.xml e localize a seguinte linha</p>
+
+<pre><code>titlecase: true
+</code></pre>
+
+<p>Altere para:</p>
+
+<pre><code>titlecase: false
+</code></pre>
+
+<p>Prontingo, agora, basta rodar o comando &ldquo;rake generate&rdquo; e &ldquo;rake deploy&rdquo; para subir as configurações.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -604,6 +656,10 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/26/uppercase-no-titulo-em-novos-posts-no-octopress/">Uppercase no título em novos posts no Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/26/configurando-o-octopress-no-macosx-yosemite/">Configurando o Octopress no MacOSX Yosemite</a>
       </li>
     
@@ -617,10 +673,6 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
     
       <li class="post">
         <a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando o cache do Java no Linux</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress no Mac OS X</a>
       </li>
     
   </ul>

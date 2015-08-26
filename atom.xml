@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-08-26T19:42:12-03:00</updated>
+  <updated>2015-08-26T20:02:47-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Uppercase no título em novos posts no Octopress]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2015/08/26/uppercase-no-titulo-em-novos-posts-no-octopress/"/>
+    <updated>2015-08-26T19:49:56-03:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2015/08/26/uppercase-no-titulo-em-novos-posts-no-octopress</id>
+    <content type="html"><![CDATA[<p>Por default, quando é criado um novo post no Octopress, ele cria sempre com a primeira letra de cada palavra em maiúsculo (Uppercase). Isso me incomodou um pouco, por que fica visualmente bem feio. Por exemplo,
+eu criei esta página da seguinte forma:</p>
+
+<pre><code>$ rake new_post["Uppercase no título em novos posts no Octopress"]
+</code></pre>
+
+<p>Com isso, ele irá exibir o título da seguinte forma ao fazer o deploy:</p>
+
+<blockquote><p>&ldquo;Uppercase No Título Em Novos Posts No Octopress&rdquo;</p></blockquote>
+
+<p>Eu particularmente acho visivelmente bem feio. Dei uma pesquisada e a solução é muito simple. Edite o arquivo octopress/_config.xml e localize a seguinte linha</p>
+
+<pre><code>titlecase: true
+</code></pre>
+
+<p>Altere para:</p>
+
+<pre><code>titlecase: false
+</code></pre>
+
+<p>Prontingo, agora, basta rodar o comando &ldquo;rake generate&rdquo; e &ldquo;rake deploy&rdquo; para subir as configurações.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Configurando o Octopress no MacOSX Yosemite]]></title>
