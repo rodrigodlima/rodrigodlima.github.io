@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Limpando O Cache Do Java No Linux - rodrigolima.blog.br</title>
+  <title>Configurando O Octopress No MacOSX Yosemite - rodrigolima.blog.br</title>
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Essa é uma pequena dica para limpar o cache do Java no Linux. É simples. Basta abrir o &ldquo;Java Control Panel&rdquo;, para isso, digite o comando &hellip;">
+  <meta name="description" content="Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.10.4 ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">
+  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2015/08/26/configurando-o-octopress-no-macosx-yosemite/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="rodrigolima.blog.br" type="application/atom+xml">
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">Limpando O Cache Do Java No Linux</h1>
+      <h1 class="entry-title">Configurando O Octopress No MacOSX Yosemite</h1>
     
     
       <p class="meta">
@@ -78,23 +78,93 @@
 
 
 
-<time class='entry-date' datetime='2015-04-08T17:54:20-03:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:54 pm</span></time>
+<time class='entry-date' datetime='2015-08-26T17:52:34-03:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:52 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Essa é uma pequena dica para limpar o cache do Java no Linux.</p>
+<div class="entry-content"><p>Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.10.4 (Yosemite).
+Também será demonstrado como subir o Octopress para o Github. Vamos lá.</p>
 
-<p>É simples. Basta abrir o &ldquo;<strong>Java Control Panel</strong>&rdquo;, para isso, digite o comando &ldquo;<strong>javaws -viewer</strong>&rdquo; no terminal.</p>
+<h1>Instalação das dependências</h1>
 
-<pre><code>$ javaws -viewer
+<h1>Instala o Ruby na versão stable</h1>
+
+<pre><code>$ sudo curl -L https://get.rvm.io | bash -s stable --ruby
 </code></pre>
 
-<p>Agora basta clicar no botão Settings em &ldquo;Temporary Internet Files&rdquo; e fazer a exclusão do cache.</p>
+<h1>Agora é necessário setar o path do RMV:</h1>
 
-<p>Existem outras configurações de Java que podem ser realizadas no <strong>Java Control Center</strong>, porém não vou entrar em detalhes aqui.</p>
+<pre><code>$ echo ‘[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; source "$HOME/.rvm/scripts/rvm”`&gt;&gt; ~/.bash_profile
+
+$ source ~/.bash_profile
+
+$ rvm install ruby
+$ rvm --default use ruby-2.2.1 
+$ ruby -v
+ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-darwin14]
+$ gem -v
+2.4.8
+</code></pre>
+
+<h1>Configurando o Octopress</h1>
+
+<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
+$ gem install bundler
+$ bundle install
+</code></pre>
+
+<h1>Instala o tema padrão do Octopress</h1>
+
+<pre><code>$ rake install
+</code></pre>
+
+<h1>Modificando a configuração do site</h1>
+
+<p>O arquivo que contém as configurações do Octopress é o _config.xml. Nele você pode modificar a url do seu site, autor, titulo, etc. Se você quiser saber maiores detalhes, basta dar uma olhada na documentação oficial do Octopress (<a href="http://octopress.org/docs">http://octopress.org/docs</a>)</p>
+
+<h1>Configurando o Octopress com o Github</h1>
+
+<p>Você pode efetuar o deploy do Octopress direto para o Github, que oferece um serviço gratuito (GitHub Pages) para hospedar seu site. Você pode seguir o passo a passo descrito na documentação do Octopress (<a href="http://octopress.org/docs/deploying/github/">http://octopress.org/docs/deploying/github/</a>). Resumidamente, você terá que criar uma conta no Github e um repositório novo para funcionamento com o Octopress. Mas como o objetivo do post não é falar sobre o Github, vamos em frente ;-)</p>
+
+<p>O Octopress oferece alguns “scripts” para facilitar a configuração e deploy para o Github. Então, vamos lá:</p>
+
+<pre><code>$ rake setup_github_pages
+</code></pre>
+
+<p>Neste passo você precisará informar o endereço do repositório Git criado no Github. A saída do comando será mais ou menos assim:</p>
+
+<pre><code>$ rake setup_github_pages
+Enter the read/write url for your repository
+(For example, 'git@github.com:your_username/your_username.github.io.git)
+       or 'https://github.com/your_username/your_username.github.io')
+Repository url: https://github.com/rodrigodlima/rodrigodlima.github.io.git    
+Added remote https://github.com/rodrigodlima/rodrigodlima.github.io.git as  origin
+Set origin as default remote
+Master branch renamed to 'source' for committing your blog source files
+rm -rf _deploy
+mkdir _deploy
+cd _deploy
+Initialized empty Git repository in /Users/rodrigo/Blog-update/octopress/   _deploy/.git/
+[master (root-commit) a20c594] Octopress init
+1 file changed, 1 insertion(+)
+create mode 100644 index.html
+cd -
+
+
+## Now you can deploy to https://github.com/rodrigodlima/   rodrigodlima.github.io.git with `rake deploy` ##
+</code></pre>
+
+<p>Pronto, agora basta criar seus posts e depois fazer o deploy para o Github:</p>
+
+<pre><code>$ rake new_post[“Configurando o Octopress no MacOSX”]
+$ rake generate
+$ rake deploy
+</code></pre>
+
+<p>Algumas considereações. O Octopress utiliza para formatação das páginas a sintaxe Markdown. Você pode editar a página diretamente com um editor de texto de sua preferência (Vim, Text Editor, etc), mas eu prefiro usar um editor de MarkDown, que você pode ir digitando e ele já mostra o resultado ao lado. No MacOSX eu utilizo para isso o Mou -<a href="http://25.io/mou/-.">http://25.io/mou/-.</a></p>
 </div>
 
 
@@ -110,7 +180,7 @@
 
 
 
-<time class='entry-date' datetime='2015-04-08T17:54:20-03:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:54 pm</span></time>
+<time class='entry-date' datetime='2015-08-26T17:52:34-03:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:52 pm</span></time>
       
 
 
@@ -118,7 +188,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2015/08/26/configurando-o-octopress-no-macosx-yosemite/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2015/08/26/configurando-o-octopress-no-macosx-yosemite/" >Tweet</a>
   
   
   
@@ -129,10 +199,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/01/28/octopress-no-mac-os-x/" title="Previous Post: Octopress no Mac OS X">&laquo; Octopress no Mac OS X</a>
+        <a class="basic-alignment left" href="/blog/2015/08/24/justificando-o-texto-no-octopress/" title="Previous Post: Justificando o texto no Octopress">&laquo; Justificando o texto no Octopress</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/08/21/de-volta-ao-blog/" title="Next Post: De volta ao Blog">De volta ao Blog &raquo;</a>
       
     </p>
   </footer>
