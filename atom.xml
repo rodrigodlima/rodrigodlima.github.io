@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-08-26T19:24:21-03:00</updated>
+  <updated>2015-08-26T19:42:12-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Configurando O Octopress No MacOSX Yosemite]]></title>
+    <title type="html"><![CDATA[Configurando o Octopress no MacOSX Yosemite]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/08/26/configurando-o-octopress-no-macosx-yosemite/"/>
     <updated>2015-08-26T17:52:34-03:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/08/26/configurando-o-octopress-no-macosx-yosemite</id>
@@ -102,7 +102,7 @@ $ rake deploy
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Justificando O Texto No Octopress]]></title>
+    <title type="html"><![CDATA[Justificando o texto no Octopress]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/08/24/justificando-o-texto-no-octopress/"/>
     <updated>2015-08-24T15:11:43-03:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/08/24/justificando-o-texto-no-octopress</id>
@@ -120,7 +120,7 @@ $ rake deploy
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[De Volta Ao Blog]]></title>
+    <title type="html"><![CDATA[De volta ao Blog]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/08/21/de-volta-ao-blog/"/>
     <updated>2015-08-21T17:39:20-03:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/08/21/de-volta-ao-blog</id>
@@ -139,7 +139,7 @@ especificamente sobre o uso do Puppet.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Limpando O Cache Do Java No Linux]]></title>
+    <title type="html"><![CDATA[Limpando o cache do Java no Linux]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/"/>
     <updated>2015-04-08T17:54:20-03:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux</id>
@@ -157,7 +157,7 @@ especificamente sobre o uso do Puppet.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Octopress No Mac OS X]]></title>
+    <title type="html"><![CDATA[Octopress no Mac OS X]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x/"/>
     <updated>2015-01-28T22:54:46-02:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x</id>
@@ -172,7 +172,7 @@ especificamente sobre o uso do Puppet.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Viagem De Férias a Maceió]]></title>
+    <title type="html"><![CDATA[Viagem de Férias a Maceió]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/"/>
     <updated>2015-01-28T18:57:00-02:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio</id>
@@ -193,7 +193,7 @@ especificamente sobre o uso do Puppet.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Instalação E Configuração Octopress]]></title>
+    <title type="html"><![CDATA[Instalação e Configuração Octopress]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/01/28/instalacao-e-configuracao-octopress/"/>
     <updated>2015-01-28T11:40:58-02:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/01/28/instalacao-e-configuracao-octopress</id>
@@ -326,7 +326,7 @@ Creating new post: source/_posts/2015-01-28-instalacao-e-configuracao-octopress.
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Primeiro Post]]></title>
+    <title type="html"><![CDATA[Primeiro post]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/01/27/primeiro-post/"/>
     <updated>2015-01-27T17:44:47-02:00</updated>
     <id>http://rodrigolima.blog.br/blog/2015/01/27/primeiro-post</id>
