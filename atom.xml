@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2015-08-26T20:02:47-03:00</updated>
+  <updated>2015-08-27T11:08:06-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -28,7 +28,7 @@ eu criei esta página da seguinte forma:</p>
 
 <blockquote><p>&ldquo;Uppercase No Título Em Novos Posts No Octopress&rdquo;</p></blockquote>
 
-<p>Eu particularmente acho visivelmente bem feio. Dei uma pesquisada e a solução é muito simple. Edite o arquivo octopress/_config.xml e localize a seguinte linha</p>
+<p>Eu particularmente acho visivelmente bem feio. Dei uma pesquisada e a solução é muito simples. Edite o arquivo octopress/_config.xml e localize a seguinte linha</p>
 
 <pre><code>titlecase: true
 </code></pre>
@@ -38,7 +38,7 @@ eu criei esta página da seguinte forma:</p>
 <pre><code>titlecase: false
 </code></pre>
 
-<p>Prontingo, agora, basta rodar o comando &ldquo;rake generate&rdquo; e &ldquo;rake deploy&rdquo; para subir as configurações.</p>
+<p>Prontinho, agora, basta rodar o comando &ldquo;rake generate&rdquo; e &ldquo;rake deploy&rdquo; para subir as configurações.</p>
 ]]></content>
   </entry>
   
