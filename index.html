@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Buenas, Tive um tempo &ldquo;fora do ar&rdquo; e acabei deixando o projeto do Blog de lado. Esta via da TI tem seus altos baixos, andei meio &hellip;">
+  <meta name="description" content="Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.10.4 ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,7 +84,115 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/08/21/de-volta-ao-blog/">De volta ao Blog</a></h1>
+      <h1 class="entry-title"><a href="/blog/2016/11/16/configurando-o-octopress-no-macosx/">Configurando O Octopress No MacOSX</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-11-16T17:06:34-02:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>5:06 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.10.4 (Yosemite).
+Também será demonstrado como subir o Octopress para o Github. Vamos lá.</p>
+
+<h1>Instalação das dependências</h1>
+
+<h1>Instala o Ruby na versão stable</h1>
+
+<pre><code>    $ sudo curl -L https://get.rvm.io | bash -s master --ruby
+</code></pre>
+
+<h1>Agora é necessário setar o path do RMV:</h1>
+
+<pre><code>    $ echo ‘[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; source "$HOME/.rvm/scripts/rvm”`&gt;&gt; ~/.bash_profile
+
+    $ source ~/.bash_profile
+
+    $ rvm install ruby
+    $ rvm --default use ruby-2.2.1
+    $ ruby -v
+    ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-darwin14]
+    $ gem -v
+    2.4.8
+</code></pre>
+
+<h1>Configurando o Octopress</h1>
+
+<pre><code>    $ git clone git://github.com/imathis/octopress.git octopress
+    $ gem install bundler
+    $ bundle install
+</code></pre>
+
+<h1>Instala o tema padrão do Octopress</h1>
+
+<pre><code>    $ rake install
+</code></pre>
+
+<h1>Modificando a configuração do site</h1>
+
+<p>O arquivo que contém as configurações do Octopress é o _config.xml. Nele você pode modificar a url do seu site, autor, titulo, etc. Se você quiser saber maiores detalhes, basta dar uma olhada na documentação oficial do Octopress (<a href="http://octopress.org/docs">http://octopress.org/docs</a>)</p>
+
+<h1>Configurando o Octopress com o Github</h1>
+
+<p>Você pode efetuar o deploy do Octopress direto para o Github, que oferece um serviço gratuito (GitHub Pages) para hospedar seu site. Você pode seguir o passo a passo descrito na documentação do Octopress (<a href="http://octopress.org/docs/deploying/github/">http://octopress.org/docs/deploying/github/</a>). Resumidamente, você terá que criar uma conta no Github e um repositório novo para funcionamento com o Octopress. Mas como o objetivo do post não é falar sobre o Github, vamos em frente ;-)</p>
+
+<p>O Octopress oferece alguns “scripts” para facilitar a configuração e deploy para o Github. Então, vamos lá:</p>
+
+<pre><code>    $ rake setup_github_pages
+</code></pre>
+
+<p>Neste passo você precisará informar o endereço do repositório Git criado no Github. A saída do comando será mais ou menos assim:</p>
+
+<pre><code>    $ rake setup_github_pages
+    Enter the read/write url for your repository
+    (For example, 'git@github.com:your_username/your_username.github.io.git)
+       or 'https://github.com/your_username/your_username.github.io')
+    Repository url: https://github.com/rodrigodlima/rodrigodlima.github.io.git
+    Added remote https://github.com/rodrigodlima/rodrigodlima.github.io.git as      origin
+    Set origin as default remote
+    Master branch renamed to 'source' for committing your blog source files
+    rm -rf _deploy
+    mkdir _deploy
+    cd _deploy
+    Initialized empty Git repository in /Users/rodrigo/Blog-update/octopress/       _deploy/.git/
+    [master (root-commit) a20c594] Octopress init
+    1 file changed, 1 insertion(+)
+    create mode 100644 index.html
+    cd -
+
+
+    ## Now you can deploy to https://github.com/rodrigodlima/       rodrigodlima.github.io.git with `rake deploy` ##
+</code></pre>
+
+<p>Pronto, agora basta criar seus posts e depois fazer o deploy para o Github:</p>
+
+<pre><code>    $ rake new_post[“Configurando o Octopress no MacOSX”]
+    $ rake generate
+    $ rake deploy
+</code></pre>
+
+<p>Algumas considereações. O Octopress utiliza para formatação das páginas a sintaxe Markdown. Você pode editar a página diretamente com um editor de texto de sua preferência (Vim, Text Editor, etc), mas eu prefiro usar um editor de MarkDown, que você pode ir digitando e ele já mostra o resultado ao lado. No MacOSX eu utilizo para isso o Mou <a href="http://25.io/mou/">http://25.io/mou/</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/21/de-volta-ao-blog/">De Volta Ao Blog</a></h1>
     
     
       <p class="meta">
@@ -123,7 +231,7 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando o cache do Java no Linux</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando O Cache Do Java No Linux</a></h1>
     
     
       <p class="meta">
@@ -161,7 +269,7 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress no Mac OS X</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress No Mac OS X</a></h1>
     
     
       <p class="meta">
@@ -196,7 +304,7 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem de Férias a Maceió</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem De Férias a Maceió</a></h1>
     
     
       <p class="meta">
@@ -237,7 +345,7 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/01/28/instalacao-e-configuracao-octopress/">Instalação e Configuração Octopress</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/01/28/instalacao-e-configuracao-octopress/">Instalação E Configuração Octopress</a></h1>
     
     
       <p class="meta">
@@ -390,7 +498,7 @@ Creating new post: source/_posts/2015-01-28-instalacao-e-configuracao-octopress.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/01/27/primeiro-post/">Primeiro post</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/01/27/primeiro-post/">Primeiro Post</a></h1>
     
     
       <p class="meta">
@@ -446,23 +554,23 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/08/21/de-volta-ao-blog/">De volta ao Blog</a>
+        <a href="/blog/2016/11/16/configurando-o-octopress-no-macosx/">Configurando O Octopress No MacOSX</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando o cache do Java no Linux</a>
+        <a href="/blog/2015/08/21/de-volta-ao-blog/">De Volta Ao Blog</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress no Mac OS X</a>
+        <a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando O Cache Do Java No Linux</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem de Férias a Maceió</a>
+        <a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress No Mac OS X</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2015/01/28/instalacao-e-configuracao-octopress/">Instalação e Configuração Octopress</a>
+        <a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem De Férias a Maceió</a>
       </li>
     
   </ul>
