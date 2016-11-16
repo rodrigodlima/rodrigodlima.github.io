@@ -9,7 +9,7 @@
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.10.4 ( &hellip;">
+  <meta name="description" content="Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.12.1 ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,12 +97,12 @@
   </header>
 
 
-<div class="entry-content"><p>Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.10.4 (Yosemite).
+<div class="entry-content"><p>Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.12.1 (Sierra).
 Também será demonstrado como subir o Octopress para o Github. Vamos lá.</p>
 
 <h1>Instalação das dependências</h1>
 
-<h1>Instala o Ruby na versão stable</h1>
+<h1>Instala o Ruby</h1>
 
 <pre><code>    $ sudo curl -L https://get.rvm.io | bash -s master --ruby
 </code></pre>
@@ -114,11 +114,10 @@ Também será demonstrado como subir o Octopress para o Github. Vamos lá.</p>
     $ source ~/.bash_profile
 
     $ rvm install ruby
-    $ rvm --default use ruby-2.2.1
     $ ruby -v
-    ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-darwin14]
+    ruby 2.3.2p217 (2016-11-15 revision 56796) [x86_64-darwin16]
     $ gem -v
-    2.4.8
+    2.5.2
 </code></pre>
 
 <h1>Configurando o Octopress</h1>
@@ -172,11 +171,20 @@ Também será demonstrado como subir o Octopress para o Github. Vamos lá.</p>
 <p>Pronto, agora basta criar seus posts e depois fazer o deploy para o Github:</p>
 
 <pre><code>    $ rake new_post[“Configurando o Octopress no MacOSX”]
-    $ rake generate
+</code></pre>
+
+<p>Obs: Quando você cria um novo post com o comando &ldquo;rake new_post&rdquo;, ele cria um arquivo com a data e o nome definido por você. No exemplo acima, ele criará o arquivo no seguinte diretório:</p>
+
+<pre><code>    $ source/_posts/2016-11-16-configurando-o-octopress-no-macosx.markdown
+</code></pre>
+
+<p>E agora, com os comandos abaixo, você gera a página e faz o deploy para o Github:</p>
+
+<pre><code>    $ rake generate
     $ rake deploy
 </code></pre>
 
-<p>Algumas considereações. O Octopress utiliza para formatação das páginas a sintaxe Markdown. Você pode editar a página diretamente com um editor de texto de sua preferência (Vim, Text Editor, etc), mas eu prefiro usar um editor de MarkDown, que você pode ir digitando e ele já mostra o resultado ao lado. No MacOSX eu utilizo para isso o Mou <a href="http://25.io/mou/">http://25.io/mou/</a></p>
+<p>Algumas considerações. O Octopress utiliza para formatação das páginas a sintaxe Markdown. Você pode editar a página diretamente com um editor de texto de sua preferência (Vim, Text Editor, etc), mas eu prefiro usar um editor de MarkDown, que você pode ir digitando e ele já mostra o resultado ao lado. No MacOSX eu utilizo para isso o Mou <a href="http://25.io/mou/">http://25.io/mou/</a></p>
 </div>
 
 
