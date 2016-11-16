@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2016-11-16T17:26:31-02:00</updated>
+  <updated>2016-11-16T17:31:34-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -105,7 +105,7 @@ Também será demonstrado como subir o Octopress para o Github. Vamos lá.</p>
     $ rake deploy
 </code></pre>
 
-<p>Algumas considerações. O Octopress utiliza para formatação das páginas a sintaxe Markdown. Você pode editar a página diretamente com um editor de texto de sua preferência (Vim, Text Editor, etc), mas eu prefiro usar um editor de MarkDown, que você pode ir digitando e ele já mostra o resultado ao lado. No MacOSX eu utilizo para isso o Mou <a href="http://25.io/mou/">http://25.io/mou/</a></p>
+<p>Algumas considerações. O Octopress utiliza para formatação das páginas a sintaxe Markdown. Você pode editar a página diretamente com um editor de texto de sua preferência (Vim, Text Editor, etc), mas eu prefiro usar um editor de MarkDown, que você pode ir digitando e ele já mostra o resultado ao lado. No MacOSX eu utilizo para isso o MacDown: <a href="http://macdown.uranusjr.com/">http://macdown.uranusjr.com/</a></p>
 ]]></content>
   </entry>
   
