@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2017-01-10T16:46:57-02:00</updated>
+  <updated>2017-01-10T18:46:33-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bash Completion for MacOS Sierra]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2017/01/10/bash-completion-for-macos-sierra/"/>
+    <updated>2017-01-10T18:27:40-02:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2017/01/10/bash-completion-for-macos-sierra</id>
+    <content type="html"><![CDATA[<p>Uma coisa que sinto falta utilizando o MacOS da Apple é o Bash Completion. Com ele instalado, me poupa bastante digitação e tempo durante
+o meu dia de trabalho. Basicamente, ele preenche automaticamente alguns comandos somente apertando a tecla &ldquo;TAB&rdquo;. Isso é natural no bash para
+completar comandos, mas as opções e demais informações você precisa digitar. Com o Bash Completion, eu consigo digitar por exemplo:</p>
+
+<pre><code>$ ssh &lt;TAB&gt;
+</code></pre>
+
+<p>Com isso ele lista todos os hosts que eu já digitei anteriormente. Isso é muito útil no dia a dia. É claro que isso pode gerar uma pequena lentidão
+na execução do comando e também consome maiores recursos do hardware, mas para mim isso vale a pena pela facilidade.</p>
+
+<p>Para instalar é bem simples, você precisa usar o &ldquo;Port&rdquo; ou &ldquo;Homebrew&rdquo;. Esses caras são os gerenciadores de pacotes compatíveis no MacOS. São como
+Yum e Apt em sistemas Linux.</p>
+
+<p>Não vou cobrir aqui a instalação desses caras, mas vou deixar abaixo o link para caso você ainda não tenha instalado:</p>
+
+<p><a href="https://www.macports.org/">https://www.macports.org/</a></p>
+
+<p><a href="http://brew.sh/">http://brew.sh/</a></p>
+
+<p>Para instalar o Bash Completion com o Port:</p>
+
+<p>$ sudo port install bash-completion</p>
+
+<p>Depois de instalado, basta você inserir o seguinte conteúdo no seu .bash_profile:</p>
+
+<pre><code># bash-completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+       . /opt/local/etc/profile.d/bash_completion.sh
+fi
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Editor]]></title>

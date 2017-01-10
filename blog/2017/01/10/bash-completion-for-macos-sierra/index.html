@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Viagem de Férias a Maceió - rodrigolima.blog.br</title>
+  <title>Bash Completion for MacOS Sierra - rodrigolima.blog.br</title>
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Mais alguns dias e&hellip;. Férias!!! Buenas, quem me conhece sabe o quanto estou esperando por este momento. Nos últimos 4 anos, por questões &hellip;">
+  <meta name="description" content="Uma coisa que sinto falta utilizando o MacOS da Apple é o Bash Completion. Com ele instalado, me poupa bastante digitação e tempo durante
+o meu dia &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/">
+  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2017/01/10/bash-completion-for-macos-sierra/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="rodrigolima.blog.br" type="application/atom+xml">
@@ -81,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Viagem de Férias a Maceió</h1>
+      <h1 class="entry-title">Bash Completion for MacOS Sierra</h1>
     
     
       <p class="meta">
@@ -90,26 +91,43 @@
 
 
 
-<time class='entry-date' datetime='2015-01-28T18:57:00-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:57 pm</span></time>
+<time class='entry-date' datetime='2017-01-10T18:27:40-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>6:27 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h3>Mais alguns dias e&hellip;. Férias!!!</h3>
+<div class="entry-content"><p>Uma coisa que sinto falta utilizando o MacOS da Apple é o Bash Completion. Com ele instalado, me poupa bastante digitação e tempo durante
+o meu dia de trabalho. Basicamente, ele preenche automaticamente alguns comandos somente apertando a tecla &ldquo;TAB&rdquo;. Isso é natural no bash para
+completar comandos, mas as opções e demais informações você precisa digitar. Com o Bash Completion, eu consigo digitar por exemplo:</p>
 
-<p>Buenas, quem me conhece sabe o quanto estou esperando por este momento. Nos últimos 4 anos, por questões financeiras e pessoais não consegui aproveitar em nada as minhas férias. As férias só eram usadas para pagar contas&hellip; e em muitas delas continuei trabalhando. Pois bem, agora chegou a hora de aproveitar um pouco, conhecer novos lugares, pessoas, culturas, enfim, tudo o que uma viagem pode te proporcionar.</p>
+<pre><code>$ ssh &lt;TAB&gt;
+</code></pre>
 
-<p>O local escolhido? Maceió - Alagoas.</p>
+<p>Com isso ele lista todos os hosts que eu já digitei anteriormente. Isso é muito útil no dia a dia. É claro que isso pode gerar uma pequena lentidão
+na execução do comando e também consome maiores recursos do hardware, mas para mim isso vale a pena pela facilidade.</p>
 
-<p>No Nordeste conheço apenas Natal/RN, que por sinal é maravilhosa. Mas depois de muita pesquisa acabei escolhendo conhecer Maceió e seus arredores.</p>
+<p>Para instalar é bem simples, você precisa usar o &ldquo;Port&rdquo; ou &ldquo;Homebrew&rdquo;. Esses caras são os gerenciadores de pacotes compatíveis no MacOS. São como
+Yum e Apt em sistemas Linux.</p>
 
-<p>Essa viagem inclusive foi o que mais me motivou para criar esse blog já que a minha idéia é registrar toda a viagem. Como estou começando a usar o Octopress, antes de viajar já vou ir testando uma maneira fácil de fazer isso.</p>
+<p>Não vou cobrir aqui a instalação desses caras, mas vou deixar abaixo o link para caso você ainda não tenha instalado:</p>
 
-<p>Então, agora é só esperar mais 1 semaninha de trabalho antes de conhecer esse maravilhoso lugar&hellip;</p>
+<p><a href="https://www.macports.org/">https://www.macports.org/</a></p>
 
-<p><img src="/images/maceio1.jpg" /></p>
+<p><a href="http://brew.sh/">http://brew.sh/</a></p>
+
+<p>Para instalar o Bash Completion com o Port:</p>
+
+<p>$ sudo port install bash-completion</p>
+
+<p>Depois de instalado, basta você inserir o seguinte conteúdo no seu .bash_profile:</p>
+
+<pre><code># bash-completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+       . /opt/local/etc/profile.d/bash_completion.sh
+fi
+</code></pre>
 </div>
 
 
@@ -125,7 +143,7 @@
 
 
 
-<time class='entry-date' datetime='2015-01-28T18:57:00-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:57 pm</span></time>
+<time class='entry-date' datetime='2017-01-10T18:27:40-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>6:27 pm</span></time>
       
 
 
@@ -133,7 +151,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2017/01/10/bash-completion-for-macos-sierra/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2017/01/10/bash-completion-for-macos-sierra/" >Tweet</a>
   
   
   
@@ -144,10 +162,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/01/28/instalacao-e-configuracao-octopress/" title="Previous Post: Instalação e Configuração Octopress">&laquo; Instalação e Configuração Octopress</a>
+        <a class="basic-alignment left" href="/blog/2017/01/10/python-editor/" title="Previous Post: Python Editor">&laquo; Python Editor</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/01/28/octopress-no-mac-os-x/" title="Next Post: Octopress no Mac OS X">Octopress no Mac OS X &raquo;</a>
       
     </p>
   </footer>
