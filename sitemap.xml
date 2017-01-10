@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<<<<<<< HEAD
 <loc>http://rodrigolima.blog.br/blog/2017/01/10/python-editor/</loc>
 <lastmod>2017-01-10T15:35:44-02:00</lastmod>
+=======
+<loc>http://rodrigolima.blog.br/blog/2016/11/16/configurando-o-octopress-no-macosx/</loc>
+<lastmod>2016-11-16T17:06:34-02:00</lastmod>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
 </url>
 <url>
 <loc>http://rodrigolima.blog.br/blog/2015/08/21/de-volta-ao-blog/</loc>

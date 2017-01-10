@@ -9,8 +9,12 @@
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
+<<<<<<< HEAD
   <meta name="description" content="Apenas uma dica para quem está começando a desenvolver em Python. Recomendo a utilização do Editor Atom https://atom.io/.
 Ele é um editor de texto &hellip;">
+=======
+  <meta name="description" content="Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.12.1 ( &hellip;">
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,7 +89,11 @@ Ele é um editor de texto &hellip;">
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2017/01/10/python-editor/">Python Editor</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2016/11/16/configurando-o-octopress-no-macosx/">Configurando O Octopress No MacOSX</a></h1>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
     
     
       <p class="meta">
@@ -94,19 +102,114 @@ Ele é um editor de texto &hellip;">
 
 
 
+<<<<<<< HEAD
 <time class='entry-date' datetime='2017-01-10T15:35:44-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:35 pm</span></time>
+=======
+<time class='entry-date' datetime='2016-11-16T17:06:34-02:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>5:06 pm</span></time>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
         
       </p>
     
   </header>
 
 
+<<<<<<< HEAD
   <div class="entry-content"><p>Apenas uma dica para quem está começando a desenvolver em Python. Recomendo a utilização do Editor Atom <a href="https://atom.io/.">https://atom.io/.</a>
 Ele é um editor de texto desenvolvido pelo pessoal do Github.</p>
 
 <p>E após a instalação do Atom, instale o plugin linter-pylama: <a href="https://atom.io/packages/linter-pylama">https://atom.io/packages/linter-pylama</a></p>
 
 <p>Com esse plugin, ele te oferece várias features e te ajuda a desenvolver seguindo as recomendações do PEP8 (Style Guide for Python Code)</p>
+=======
+  <div class="entry-content"><p>Este post tem por objetivo descrever a instalação e configuração do Octopress no MacOSX. Esta instalação foi realizada utilizando a versão 10.12.1 (Sierra).
+Também será demonstrado como subir o Octopress para o Github. Vamos lá.</p>
+
+<h1>Instalação das dependências</h1>
+
+<h1>Instala o Ruby</h1>
+
+<pre><code>    $ sudo curl -L https://get.rvm.io | bash -s master --ruby
+</code></pre>
+
+<h1>Agora é necessário setar o path do RMV:</h1>
+
+<pre><code>    $ echo ‘[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; source "$HOME/.rvm/scripts/rvm”`&gt;&gt; ~/.bash_profile
+
+    $ source ~/.bash_profile
+
+    $ rvm install ruby
+    $ ruby -v
+    ruby 2.3.2p217 (2016-11-15 revision 56796) [x86_64-darwin16]
+    $ gem -v
+    2.5.2
+</code></pre>
+
+<h1>Configurando o Octopress</h1>
+
+<pre><code>    $ git clone git://github.com/imathis/octopress.git octopress
+    $ gem install bundler
+    $ bundle install
+</code></pre>
+
+<h1>Instala o tema padrão do Octopress</h1>
+
+<pre><code>    $ rake install
+</code></pre>
+
+<h1>Modificando a configuração do site</h1>
+
+<p>O arquivo que contém as configurações do Octopress é o _config.xml. Nele você pode modificar a url do seu site, autor, titulo, etc. Se você quiser saber maiores detalhes, basta dar uma olhada na documentação oficial do Octopress (<a href="http://octopress.org/docs">http://octopress.org/docs</a>)</p>
+
+<h1>Configurando o Octopress com o Github</h1>
+
+<p>Você pode efetuar o deploy do Octopress direto para o Github, que oferece um serviço gratuito (GitHub Pages) para hospedar seu site. Você pode seguir o passo a passo descrito na documentação do Octopress (<a href="http://octopress.org/docs/deploying/github/">http://octopress.org/docs/deploying/github/</a>). Resumidamente, você terá que criar uma conta no Github e um repositório novo para funcionamento com o Octopress. Mas como o objetivo do post não é falar sobre o Github, vamos em frente ;-)</p>
+
+<p>O Octopress oferece alguns “scripts” para facilitar a configuração e deploy para o Github. Então, vamos lá:</p>
+
+<pre><code>    $ rake setup_github_pages
+</code></pre>
+
+<p>Neste passo você precisará informar o endereço do repositório Git criado no Github. A saída do comando será mais ou menos assim:</p>
+
+<pre><code>    $ rake setup_github_pages
+    Enter the read/write url for your repository
+    (For example, 'git@github.com:your_username/your_username.github.io.git)
+       or 'https://github.com/your_username/your_username.github.io')
+    Repository url: https://github.com/rodrigodlima/rodrigodlima.github.io.git
+    Added remote https://github.com/rodrigodlima/rodrigodlima.github.io.git as      origin
+    Set origin as default remote
+    Master branch renamed to 'source' for committing your blog source files
+    rm -rf _deploy
+    mkdir _deploy
+    cd _deploy
+    Initialized empty Git repository in /Users/rodrigo/Blog-update/octopress/       _deploy/.git/
+    [master (root-commit) a20c594] Octopress init
+    1 file changed, 1 insertion(+)
+    create mode 100644 index.html
+    cd -
+
+
+    ## Now you can deploy to https://github.com/rodrigodlima/       rodrigodlima.github.io.git with `rake deploy` ##
+</code></pre>
+
+<p>Pronto, agora basta criar seus posts e depois fazer o deploy para o Github:</p>
+
+<pre><code>    $ rake new_post[“Configurando o Octopress no MacOSX”]
+</code></pre>
+
+<p>Obs: Quando você cria um novo post com o comando &ldquo;rake new_post&rdquo;, ele cria um arquivo com a data e o nome definido por você. No exemplo acima, ele criará o arquivo no seguinte diretório:</p>
+
+<pre><code>    $ source/_posts/2016-11-16-configurando-o-octopress-no-macosx.markdown
+</code></pre>
+
+<p>E agora, com os comandos abaixo, você gera a página e faz o deploy para o Github:</p>
+
+<pre><code>    $ rake generate
+    $ rake deploy
+</code></pre>
+
+<p>Algumas considerações. O Octopress utiliza para formatação das páginas a sintaxe Markdown. Você pode editar a página diretamente com um editor de texto de sua preferência (Vim, Text Editor, etc), mas eu prefiro usar um editor de MarkDown, que você pode ir digitando e ele já mostra o resultado ao lado. No MacOSX eu utilizo para isso o MacDown: <a href="http://macdown.uranusjr.com/">http://macdown.uranusjr.com/</a></p>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
 </div>
   
   
@@ -119,7 +222,11 @@ Ele é um editor de texto desenvolvido pelo pessoal do Github.</p>
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2015/08/21/de-volta-ao-blog/">De volta ao Blog</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2015/08/21/de-volta-ao-blog/">De Volta Ao Blog</a></h1>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
     
     
       <p class="meta">
@@ -158,7 +265,11 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando o cache do Java no Linux</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando O Cache Do Java No Linux</a></h1>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
     
     
       <p class="meta">
@@ -196,7 +307,11 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress no Mac OS X</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress No Mac OS X</a></h1>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
     
     
       <p class="meta">
@@ -231,7 +346,11 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem de Férias a Maceió</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem De Férias a Maceió</a></h1>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
     
     
       <p class="meta">
@@ -272,7 +391,11 @@ especificamente sobre o uso do Puppet.</p>
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2015/01/28/instalacao-e-configuracao-octopress/">Instalação e Configuração Octopress</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2015/01/28/instalacao-e-configuracao-octopress/">Instalação E Configuração Octopress</a></h1>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
     
     
       <p class="meta">
@@ -425,7 +548,11 @@ Creating new post: source/_posts/2015-01-28-instalacao-e-configuracao-octopress.
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2015/01/27/primeiro-post/">Primeiro post</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2015/01/27/primeiro-post/">Primeiro Post</a></h1>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
     
     
       <p class="meta">
@@ -481,6 +608,7 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
   <ul id="recent_posts">
     
       <li class="post">
+<<<<<<< HEAD
         <a href="/blog/2017/01/10/python-editor/">Python Editor</a>
       </li>
     
@@ -498,6 +626,25 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
     
       <li class="post">
         <a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem de Férias a Maceió</a>
+=======
+        <a href="/blog/2016/11/16/configurando-o-octopress-no-macosx/">Configurando O Octopress No MacOSX</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/21/de-volta-ao-blog/">De Volta Ao Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando O Cache Do Java No Linux</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/28/octopress-no-mac-os-x/">Octopress No Mac OS X</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/28/viagem-de-ferias-a-maceio/">Viagem De Férias a Maceió</a>
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
       </li>
     
   </ul>
@@ -551,7 +698,11 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
     </div>
   </div>
   <footer role="contentinfo"><p>
+<<<<<<< HEAD
   Copyright &copy; 2017 - Rodrigo de Lima Silva -
+=======
+  Copyright &copy; 2016 - Rodrigo de Lima Silva -
+>>>>>>> d42585be16df9a9c4ccb70f925f660ea7498a408
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
