@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2017-01-10T18:46:33-02:00</updated>
+  <updated>2017-01-11T21:39:23-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mantendo o blog Octopress em diferentes maquinas]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2017/01/11/mantendo-o-blog-octopress-em-diferentes-maquinas/"/>
+    <updated>2017-01-11T21:38:23-02:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2017/01/11/mantendo-o-blog-octopress-em-diferentes-maquinas</id>
+    <content type="html"><![CDATA[<p>Neste post, explicarei como manter o seu blog com o Octopress em diferentes lugares, ou melhor, em diferentes máquinas.
+Talvez você precisa escrever seus posts na tua estação no trabalho e ás vezes em casa por exemplo, ou talvez você tenha reinstalado
+seu SO.</p>
+
+<p>Não basta apenas fazer o clone do seu repositório do Octopress do Github, pois ele apenas &ldquo;clona&rdquo; os &ldquo;renders&rdquo; do blog localmente.
+O repositório Octopress no Github possui dois branchs, <code>source</code> e <code>master</code>. O branch <code>source</code> contém os fontes que são usados para gerar
+o blog, e o branch <code>master</code> possui o próprio blog.</p>
+
+<p>Quado a pasta local é criada seguindo o <a href="http://octopress.org/docs/setup">Octopress Setup Guide</a>, o branch master fica na subpasta _deploy. Como esta pasta começa com um underscore, ela é ignorada quando é feito o push para o repositório: <code>git push origin source</code>. Por isso é necessário seguir os seguintes passos:</p>
+
+<h3>Clonando o repositório</h3>
+
+<p>Primeiro, crie um diretório vazio e faça um <code>git init</code> do zero:</p>
+
+<pre><code>$ mkdir &lt;directory&gt; &amp;&amp; cd &lt;directory&gt; &amp;&amp; git init
+</code></pre>
+
+<p>Adicione o repositório remoto do seu blog e faça o <code>pull</code>do branch source:</p>
+
+<pre><code>$ git remote add origin git://github.com:username/username.github.io.git
+$ git pull origin source
+</code></pre>
+
+<p>Crie o branch local <code>source</code> e remova o branch local <code>master</code> para evitar confusão com o branch remoto:</p>
+
+<pre><code>$ git checkout -b source
+</code></pre>
+
+<p>Agora, crie o diretório vazio _deploy e sincronize com o branch remoto <code>master</code>:</p>
+
+<pre><code>$ mkdir _deploy
+$ git init
+$ git remote add origin git://github.com:username/username.github.io.git
+$ git pull origin master
+</code></pre>
+
+<p>Agora já está tudo pronto para realizar o update do Blog.</p>
+
+<p>Crie um novo post:</p>
+
+<pre><code>$ rake new_post["Novo Post"]
+$ rake generate
+$ rake deploy
+</code></pre>
+
+<p>E não esqueça de fazer o push do branch source:</p>
+
+<pre><code>$ git push origin source
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bash Completion for MacOS Sierra]]></title>
