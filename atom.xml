@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2017-01-11T21:52:32-02:00</updated>
+  <updated>2017-01-12T17:52:21-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -37,20 +37,21 @@ o blog, e o branch <code>master</code> possui o próprio blog.</p>
 
 <p>Adicione o repositório remoto do seu blog e faça o <code>pull</code>do branch source:</p>
 
-<pre><code>$ git remote add origin git://github.com:username/username.github.io.git
+<pre><code>$ git remote add origin git@github.com:username/username.github.io.git
 $ git pull origin source
 </code></pre>
 
 <p>Crie o branch local <code>source</code> e remova o branch local <code>master</code> para evitar confusão com o branch remoto:</p>
 
 <pre><code>$ git checkout -b source
+$ git branch -D master
 </code></pre>
 
 <p>Agora, crie o diretório vazio _deploy e sincronize com o branch remoto <code>master</code>:</p>
 
 <pre><code>$ mkdir _deploy
 $ git init
-$ git remote add origin git://github.com:username/username.github.io.git
+$ git remote add origin git@github.com:username/username.github.io.git
 $ git pull origin master
 </code></pre>
 
@@ -123,25 +124,6 @@ Ele é um editor de texto desenvolvido pelo pessoal do Github.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[De volta ao Blog]]></title>
-    <link href="http://rodrigolima.blog.br/blog/2015/08/21/de-volta-ao-blog/"/>
-    <updated>2015-08-21T17:39:20-03:00</updated>
-    <id>http://rodrigolima.blog.br/blog/2015/08/21/de-volta-ao-blog</id>
-    <content type="html"><![CDATA[<p>Buenas,</p>
-
-<p>Tive um tempo &ldquo;fora do ar&rdquo; e acabei deixando o projeto do Blog de lado. Esta via da TI tem seus altos baixos, andei meio desmotivado nos últimos meses e
-deixando várias coisas de lado, e o Blog era uma delas.
-Tenho várias coisas pra postar, mas vamos com calma. Meu próximo post será uma história sobre as minhas férias, que fiquei de postar lá em Fevereiro e até
-agora nada :-(</p>
-
-<p>Depois, vamos falar um pouco sobre Gerência de Configurações, para manter tudo sobre controle na tua infra de servidores Linux. Vamos falar mais
-especificamente sobre o uso do Puppet.</p>
-
-<p>Até breve!</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Limpando o cache do Java no Linux]]></title>
     <link href="http://rodrigolima.blog.br/blog/2015/04/08/limpando-o-cache-do-java-no-linux/"/>
     <updated>2015-04-08T17:54:20-03:00</updated>
@@ -156,42 +138,6 @@ especificamente sobre o uso do Puppet.</p>
 <p>Agora basta clicar no botão Settings em &ldquo;Temporary Internet Files&rdquo; e fazer a exclusão do cache.</p>
 
 <p>Existem outras configurações de Java que podem ser realizadas no <strong>Java Control Center</strong>, porém não vou entrar em detalhes aqui.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress no Mac OS X]]></title>
-    <link href="http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x/"/>
-    <updated>2015-01-28T22:54:46-02:00</updated>
-    <id>http://rodrigolima.blog.br/blog/2015/01/28/octopress-no-mac-os-x</id>
-    <content type="html"><![CDATA[<p>Acabei de realizar a configuração do Octopress no meu Macbook Pro e agora estou fazendo o primeiro post com ele para testar. A princípio, achei menos complicado de configurar no OSX do que no Fedora. É necessário instalar o <strong><em>Git</em></strong> e o <strong><em>Ruby</em></strong> através do <strong><em>RVM</em></strong> e são passos manuais.</p>
-
-<p>Porém também é possível fazer utilizando o <strong><em>Homebrew</em></strong>, que é um gerenciador de pacotes para OSX, tal como o macports e tal como o YUM no caso de distribuições Linux Red Hat based.</p>
-
-<p>Se tudo ocorrer bem, em seguida posto como fazer a configuração do Octopress no OSX.</p>
-
-<p>Até mais!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Viagem de Férias a Maceió]]></title>
-    <link href="http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio/"/>
-    <updated>2015-01-28T18:57:00-02:00</updated>
-    <id>http://rodrigolima.blog.br/blog/2015/01/28/viagem-de-ferias-a-maceio</id>
-    <content type="html"><![CDATA[<h3>Mais alguns dias e&hellip;. Férias!!!</h3>
-
-<p>Buenas, quem me conhece sabe o quanto estou esperando por este momento. Nos últimos 4 anos, por questões financeiras e pessoais não consegui aproveitar em nada as minhas férias. As férias só eram usadas para pagar contas&hellip; e em muitas delas continuei trabalhando. Pois bem, agora chegou a hora de aproveitar um pouco, conhecer novos lugares, pessoas, culturas, enfim, tudo o que uma viagem pode te proporcionar.</p>
-
-<p>O local escolhido? Maceió - Alagoas.</p>
-
-<p>No Nordeste conheço apenas Natal/RN, que por sinal é maravilhosa. Mas depois de muita pesquisa acabei escolhendo conhecer Maceió e seus arredores.</p>
-
-<p>Essa viagem inclusive foi o que mais me motivou para criar esse blog já que a minha idéia é registrar toda a viagem. Como estou começando a usar o Octopress, antes de viajar já vou ir testando uma maneira fácil de fazer isso.</p>
-
-<p>Então, agora é só esperar mais 1 semaninha de trabalho antes de conhecer esse maravilhoso lugar&hellip;</p>
-
-<p><img src="http://rodrigolima.blog.br/images/maceio1.jpg" /></p>
 ]]></content>
   </entry>
   
