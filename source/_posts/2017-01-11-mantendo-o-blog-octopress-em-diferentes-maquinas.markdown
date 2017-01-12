@@ -24,18 +24,19 @@ Primeiro, crie um diretório vazio e faça um `git init` do zero:
 
 Adicione o repositório remoto do seu blog e faça o `pull`do branch source:
 
-	$ git remote add origin git://github.com:username/username.github.io.git
+	$ git remote add origin git@github.com:username/username.github.io.git
 	$ git pull origin source
 	
 Crie o branch local `source` e remova o branch local `master` para evitar confusão com o branch remoto:
 
 	$ git checkout -b source
+	$ git branch -D master
 	
 Agora, crie o diretório vazio _deploy e sincronize com o branch remoto `master`:
 	
 	$ mkdir _deploy
 	$ git init
-	$ git remote add origin git://github.com:username/username.github.io.git
+	$ git remote add origin git@github.com:username/username.github.io.git
 	$ git pull origin master
 	
 Agora já está tudo pronto para realizar o update do Blog.
