@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2017-01-30T12:51:07-02:00</updated>
+  <updated>2017-02-14T16:51:46-02:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Alterando o Runlevel no CentOS7]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7/"/>
+    <updated>2017-02-14T16:10:34-02:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7</id>
+    <content type="html"><![CDATA[<p>Apenas uma pequena dica para quem deseja alterar o Runlevel no CentOS7 ou RHEL7.</p>
+
+<p>Nas versões anteriores, como por exemplo no CentOS6, bastava editar o arquivo /etc/initab e alterar o runlevel na seguinte linha:</p>
+
+<pre><code>id:3:initdefault:
+</code></pre>
+
+<p>No exemplo acima, o runlevel está setado para <b>&ldquo;3&rdquo;</b>. O runlevel 3 significa <b>&ldquo;Full multiuser mode&rdquo;</b>, ou seja, inicia o sistema normalmente com suporte a rede e principalmente em modo texto. Caso deseje alterar para iniciar o sistema com a interface gráfica (KDE, Gnome, etc), basta alterar a linha acima para <b>&ldquo;5&rdquo;</b>.</p>
+
+<p>Com a mudança do Init para Systemd apartir do CentOS7 (Caso queira saber mais sobre isso: <a href="http://www.tecmint.com/systemd-replaces-init-in-linux/">Leia aqui</a>, a maneira como é alterado o runlevel muda ligeiramente (bastante na real ;-)</p>
+
+<h2>Verificando runlevel atual</h2>
+
+<pre><code>[root@localhost ~] systemctl get-default
+multi-user.target
+</code></pre>
+
+<p> O multi-user-agent equivale ao runlevel &ldquo;3&rdquo;, ou seja, modo texto.</p>
+
+<h2>Alterando o runlevel</h2>
+
+<p>Caso você queria mudar o runlevel para o modo gráfico, ou &ldquo;runlevel 5&rdquo; como era conhecido nas versões anteriores:</p>
+
+<pre><code>[root@localhost ~] systemctl set-default graphical.target
+</code></pre>
+
+<p>Basta reiniciar o sistema que você verá que iniciará em modo gráfico. Para verificar os outros Runlevels:</p>
+
+<pre><code>[root@localhost ~] systemctl list-units --type=target
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mantendo o blog Octopress em diferentes maquinas]]></title>

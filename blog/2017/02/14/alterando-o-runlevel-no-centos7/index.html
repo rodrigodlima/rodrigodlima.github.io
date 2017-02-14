@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python Editor - rodrigolima.blog.br</title>
+  <title>Alterando o Runlevel no CentOS7 - rodrigolima.blog.br</title>
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Apenas uma dica para quem está começando a desenvolver em Python. Recomendo a utilização do Editor Atom https://atom.io/.
-Ele é um editor de texto &hellip;">
+  <meta name="description" content="Apenas uma pequena dica para quem deseja alterar o Runlevel no CentOS7 ou RHEL7. Nas versões anteriores, como por exemplo no CentOS6, bastava editar &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Ele é um editor de texto &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2017/01/10/python-editor/">
+  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="rodrigolima.blog.br" type="application/atom+xml">
@@ -82,7 +81,7 @@ Ele é um editor de texto &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Python Editor</h1>
+      <h1 class="entry-title">Alterando o Runlevel no CentOS7</h1>
     
     
       <p class="meta">
@@ -91,19 +90,43 @@ Ele é um editor de texto &hellip;">
 
 
 
-<time class='entry-date' datetime='2017-01-10T15:35:44-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:35 pm</span></time>
+<time class='entry-date' datetime='2017-02-14T16:10:34-02:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>4:10 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Apenas uma dica para quem está começando a desenvolver em Python. Recomendo a utilização do Editor Atom <a href="https://atom.io/.">https://atom.io/.</a>
-Ele é um editor de texto desenvolvido pelo pessoal do Github.</p>
+<div class="entry-content"><p>Apenas uma pequena dica para quem deseja alterar o Runlevel no CentOS7 ou RHEL7.</p>
 
-<p>E após a instalação do Atom, instale o plugin linter-pylama: <a href="https://atom.io/packages/linter-pylama">https://atom.io/packages/linter-pylama</a></p>
+<p>Nas versões anteriores, como por exemplo no CentOS6, bastava editar o arquivo /etc/initab e alterar o runlevel na seguinte linha:</p>
 
-<p>Com esse plugin, ele te oferece várias features e te ajuda a desenvolver seguindo as recomendações do PEP8 (Style Guide for Python Code)</p>
+<pre><code>id:3:initdefault:
+</code></pre>
+
+<p>No exemplo acima, o runlevel está setado para <b>&ldquo;3&rdquo;</b>. O runlevel 3 significa <b>&ldquo;Full multiuser mode&rdquo;</b>, ou seja, inicia o sistema normalmente com suporte a rede e principalmente em modo texto. Caso deseje alterar para iniciar o sistema com a interface gráfica (KDE, Gnome, etc), basta alterar a linha acima para <b>&ldquo;5&rdquo;</b>.</p>
+
+<p>Com a mudança do Init para Systemd apartir do CentOS7 (Caso queira saber mais sobre isso: <a href="http://www.tecmint.com/systemd-replaces-init-in-linux/">Leia aqui</a>, a maneira como é alterado o runlevel muda ligeiramente (bastante na real ;-)</p>
+
+<h2>Verificando runlevel atual</h2>
+
+<pre><code>[root@localhost ~] systemctl get-default
+multi-user.target
+</code></pre>
+
+<p> O multi-user-agent equivale ao runlevel &ldquo;3&rdquo;, ou seja, modo texto.</p>
+
+<h2>Alterando o runlevel</h2>
+
+<p>Caso você queria mudar o runlevel para o modo gráfico, ou &ldquo;runlevel 5&rdquo; como era conhecido nas versões anteriores:</p>
+
+<pre><code>[root@localhost ~] systemctl set-default graphical.target
+</code></pre>
+
+<p>Basta reiniciar o sistema que você verá que iniciará em modo gráfico. Para verificar os outros Runlevels:</p>
+
+<pre><code>[root@localhost ~] systemctl list-units --type=target
+</code></pre>
 </div>
 
 
@@ -119,15 +142,21 @@ Ele é um editor de texto desenvolvido pelo pessoal do Github.</p>
 
 
 
-<time class='entry-date' datetime='2017-01-10T15:35:44-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:35 pm</span></time>
+<time class='entry-date' datetime='2017-02-14T16:10:34-02:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>4:10 pm</span></time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2017/01/10/python-editor/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2017/01/10/python-editor/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7/" >Tweet</a>
   
   
   
@@ -138,10 +167,8 @@ Ele é um editor de texto desenvolvido pelo pessoal do Github.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/" title="Previous Post: Limpando o cache do Java no Linux">&laquo; Limpando o cache do Java no Linux</a>
+        <a class="basic-alignment left" href="/blog/2017/01/11/mantendo-o-blog-octopress-em-diferentes-maquinas/" title="Previous Post: Mantendo o blog Octopress em diferentes maquinas">&laquo; Mantendo o blog Octopress em diferentes maquinas</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2017/01/10/bash-completion-for-macos-sierra/" title="Next Post: Bash Completion for MacOS Sierra">Bash Completion for MacOS Sierra &raquo;</a>
       
     </p>
   </footer>
