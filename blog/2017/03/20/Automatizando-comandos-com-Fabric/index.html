@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Alterando o Runlevel no CentOS7 - rodrigolima.blog.br</title>
+  <title>Automatizando comandos com Fabric - rodrigolima.blog.br</title>
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Apenas uma pequena dica para quem deseja alterar o Runlevel no CentOS7 ou RHEL7. Nas versões anteriores, como por exemplo no CentOS6, bastava editar &hellip;">
+  <meta name="description" content="Este post é apenas uma dica de como automatizar algumas tarefas remotamente em servidores Linux.
+Hoje em dia, automatizar tarefas é algo extremamente &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7/">
+  <link rel="canonical" href="http://rodrigolima.blog.br/blog/2017/03/20/Automatizando-comandos-com-Fabric/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="rodrigolima.blog.br" type="application/atom+xml">
@@ -81,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Alterando o Runlevel no CentOS7</h1>
+      <h1 class="entry-title">Automatizando comandos com Fabric</h1>
     
     
       <p class="meta">
@@ -90,43 +91,81 @@
 
 
 
-<time class='entry-date' datetime='2017-02-14T16:10:34-02:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>4:10 pm</span></time>
+<time class='entry-date' datetime='2017-03-20T15:43:21-03:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:43 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Apenas uma pequena dica para quem deseja alterar o Runlevel no CentOS7 ou RHEL7.</p>
+<div class="entry-content"><p>Este post é apenas uma dica de como automatizar algumas tarefas remotamente em servidores Linux.
+Hoje em dia, automatizar tarefas é algo extremamente necessário em grandes ambientes e até em pequenos, para evitar trabalho e perda de tempo.
+Costumo usar o Puppet como gerenciamento de configuração do meu ambiente, juntamente com Github para controle de versões das confs dos servidores. Já se foi o tempo que o Git era utilizado apenas por desenvolvedores, hoje o pessoal de Infra tem usado muito, seguindo o conceito de DevOPS.</p>
 
-<p>Nas versões anteriores, como por exemplo no CentOS6, bastava editar o arquivo /etc/initab e alterar o runlevel na seguinte linha:</p>
+<p>Só que o Puppet tem algumas limitações, digamos assim, para execução de comandos remotos. As vezes você quer apenas dar um &ldquo;restart&rdquo; em algum daemon nos seus servidores. Isso não é problema caso você possua uns dois ou 3 servidores, mas já imaginou fazer isso em uns 200 servidores? Vai levar um certo tempinho até você terminar isso né? Aí que entra o <a href="http://www.fabfile.org/">Fabric</a>. O Python é uma biblioteca Python e um utilitário de linha de comando que utiliza o SSH para executar tarefas administrativas remotamente.</p>
 
-<pre><code>id:3:initdefault:
+<p>Existe uma boa documentação no site do <a href="http://www.fabfile.org/">Fabric</a>, mas o objetivo aqui é só demonstrar um exemplo prático de como utilizar ele para executar algumas tarefas remotamente.</p>
+
+<p>Antes de começarmos, a instalação do Fabric pode ser efetuado com o comando pip:</p>
+
+<pre><code># pip install fabric
 </code></pre>
 
-<p>No exemplo acima, o runlevel está setado para <b>&ldquo;3&rdquo;</b>. O runlevel 3 significa <b>&ldquo;Full multiuser mode&rdquo;</b>, ou seja, inicia o sistema normalmente com suporte a rede e principalmente em modo texto. Caso deseje alterar para iniciar o sistema com a interface gráfica (KDE, Gnome, etc), basta alterar a linha acima para <b>&ldquo;5&rdquo;</b>.</p>
+<p>Você define as tarefas que você vai querer executar em um arquivo, chamado &ldquo;fabfile.py&rdquo;. Você pode definir várias &ldquo;funções&rdquo; nesse arquivo, e depois você apenas &ldquo;chama&rdquo; essa função desejada, o que torna bem mais simples definir várias tasks sem a necessidade de estar editando o arquivo para cada execução.</p>
 
-<p>Com a mudança do Init para Systemd apartir do CentOS7 (Caso queira saber mais sobre isso: <a href="http://www.tecmint.com/systemd-replaces-init-in-linux/">Leia aqui</a>, a maneira como é alterado o runlevel muda ligeiramente (bastante na real ;-)</p>
+<p>Aqui, um exemplo do conteúdo do arquivo <em>fabfile.py</em>:</p>
 
-<h2>Verificando runlevel atual</h2>
+<pre><code>from fabric.api import run, sudo, env, settings,    hide, parallel
+from fabric.colors import yellow, green
+def host_type():
+run('uname -s')
 
-<pre><code>[root@localhost ~] systemctl get-default
-multi-user.target
+def read_hosts():
+"""
+Reads hosts from sys.stdin line by line, expecting  one host per line.
+"""
+import sys
+env.hosts = [line.strip() for line in sys.stdin.readlines()]
+t) 
+@parallel
+
+def restart_nginx():
+sudo('systemctl restart nginx')
+@parallel
 </code></pre>
 
-<p> O multi-user-agent equivale ao runlevel &ldquo;3&rdquo;, ou seja, modo texto.</p>
+<p>Só explicando um pouco o exemplo acima. A função host_type, caso chamada, irá executar o comando <em>uname -s</em> em todos os servidores e irá retornar a saída para o terminal. A segunda função é uma boa opção caso você tenha uma lista dos hostnames ou IPS dos seus servidores em um arquivo txt por exemplo, no qual ele irá ler linha por linha do arquivo e executar o comando remotamente no servidor correspondente. Importante salientar, é necessário que você tenha a sua chave pública SSH exportada em todos os servidores, para que não seja exigido senha no momento da conexão.</p>
 
-<h2>Alterando o runlevel</h2>
+<p>Agora, vamos chamar o Fabric para verificar o hostname de todos os servidores que estão listados no arquivo servers.txt por exemplo:</p>
 
-<p>Caso você queria mudar o runlevel para o modo gráfico, ou &ldquo;runlevel 5&rdquo; como era conhecido nas versões anteriores:</p>
+<pre><code># cat servers.txt |fab read_hosts host_type -P
 
-<pre><code>[root@localhost ~] systemctl set-default graphical.target
+[server1] Executing task    'host_type'
+[server2] Executing task    'host_type'
+[server1] run: uname -s
+[server2] run: uname -s
+[server1] out: Linux
+[server1] out:
+
+[server2] out: Linux
+[server2] out:
+
+
+Done.
 </code></pre>
 
-<p>Basta reiniciar o sistema que você verá que iniciará em modo gráfico. Para verificar os outros Runlevels:</p>
+<p>O comando acima executa um <em>cat</em> no arquivo servers.txt redirecionando saída para o <em>fab</em> ao qual executa a função <em>read_hosts</em> (que lê cada linha do arquivo <em>servers.txt</em> juntamente com a função <em>host_type</em>. O conteúdo do arquivo servers.txt possui o hostname ou o endereço IP dos servidores ao qual o Fab irá executar a função desejada.</p>
 
-<pre><code>[root@localhost ~] systemctl list-units --type=target
+<p>A saída para cada consulta é exibido na linha com o hostname do server e mais &ldquo;out&rdquo;:</p>
+
+<pre><code>[server1] out: Linux
 </code></pre>
+
+<p>Obs: O parâmetro &ldquo;-P&rdquo; no comando diz que o comando será executado paralelamente, ou seja, ele irá executar o comando ao mesmo tempo em todos os servidores.</p>
+
+<p>Era isso pessoal, é um artigo curto, mas tem o objetivo apenas de apresentar essa pequenha ferramenta que pode fazer toda a diferença no seu dia a dia. A documentação é bem completa e você poderá encontrar diversos exemplos de como montar as suas tasks&hellip;</p>
+
+<p>;-)</p>
 </div>
 
 
@@ -142,12 +181,12 @@ multi-user.target
 
 
 
-<time class='entry-date' datetime='2017-02-14T16:10:34-02:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>4:10 pm</span></time>
+<time class='entry-date' datetime='2017-03-20T15:43:21-03:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:43 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/linux/'>linux</a>
+    <a class='category' href='/blog/categories/devops/'>devops</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ssh/'>ssh</a>
   
 </span>
 
@@ -156,7 +195,7 @@ multi-user.target
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2017/02/14/alterando-o-runlevel-no-centos7/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://rodrigolima.blog.br/blog/2017/03/20/Automatizando-comandos-com-Fabric/" data-via="rodrigodlima" data-counturl="http://rodrigolima.blog.br/blog/2017/03/20/Automatizando-comandos-com-Fabric/" >Tweet</a>
   
   
   
@@ -167,10 +206,8 @@ multi-user.target
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2017/01/11/mantendo-o-blog-octopress-em-diferentes-maquinas/" title="Previous Post: Mantendo o blog Octopress em diferentes maquinas">&laquo; Mantendo o blog Octopress em diferentes maquinas</a>
+        <a class="basic-alignment left" href="/blog/2017/02/14/alterando-o-runlevel-no-centos7/" title="Previous Post: Alterando o Runlevel no CentOS7">&laquo; Alterando o Runlevel no CentOS7</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2017/03/20/Automatizando-comandos-com-Fabric/" title="Next Post: Automatizando comandos com Fabric">Automatizando comandos com Fabric &raquo;</a>
       
     </p>
   </footer>

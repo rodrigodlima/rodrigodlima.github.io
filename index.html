@@ -9,7 +9,8 @@
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Apenas uma pequena dica para quem deseja alterar o Runlevel no CentOS7 ou RHEL7. Nas versões anteriores, como por exemplo no CentOS6, bastava editar &hellip;">
+  <meta name="description" content="Este post é apenas uma dica de como automatizar algumas tarefas remotamente em servidores Linux.
+Hoje em dia, automatizar tarefas é algo extremamente &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,102 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/03/20/Automatizando-comandos-com-Fabric/">Automatizando comandos com Fabric</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-03-20T15:43:21-03:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:43 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Este post é apenas uma dica de como automatizar algumas tarefas remotamente em servidores Linux.
+Hoje em dia, automatizar tarefas é algo extremamente necessário em grandes ambientes e até em pequenos, para evitar trabalho e perda de tempo.
+Costumo usar o Puppet como gerenciamento de configuração do meu ambiente, juntamente com Github para controle de versões das confs dos servidores. Já se foi o tempo que o Git era utilizado apenas por desenvolvedores, hoje o pessoal de Infra tem usado muito, seguindo o conceito de DevOPS.</p>
+
+<p>Só que o Puppet tem algumas limitações, digamos assim, para execução de comandos remotos. As vezes você quer apenas dar um &ldquo;restart&rdquo; em algum daemon nos seus servidores. Isso não é problema caso você possua uns dois ou 3 servidores, mas já imaginou fazer isso em uns 200 servidores? Vai levar um certo tempinho até você terminar isso né? Aí que entra o <a href="http://www.fabfile.org/">Fabric</a>. O Python é uma biblioteca Python e um utilitário de linha de comando que utiliza o SSH para executar tarefas administrativas remotamente.</p>
+
+<p>Existe uma boa documentação no site do <a href="http://www.fabfile.org/">Fabric</a>, mas o objetivo aqui é só demonstrar um exemplo prático de como utilizar ele para executar algumas tarefas remotamente.</p>
+
+<p>Antes de começarmos, a instalação do Fabric pode ser efetuado com o comando pip:</p>
+
+<pre><code># pip install fabric
+</code></pre>
+
+<p>Você define as tarefas que você vai querer executar em um arquivo, chamado &ldquo;fabfile.py&rdquo;. Você pode definir várias &ldquo;funções&rdquo; nesse arquivo, e depois você apenas &ldquo;chama&rdquo; essa função desejada, o que torna bem mais simples definir várias tasks sem a necessidade de estar editando o arquivo para cada execução.</p>
+
+<p>Aqui, um exemplo do conteúdo do arquivo <em>fabfile.py</em>:</p>
+
+<pre><code>from fabric.api import run, sudo, env, settings,    hide, parallel
+from fabric.colors import yellow, green
+def host_type():
+run('uname -s')
+
+def read_hosts():
+"""
+Reads hosts from sys.stdin line by line, expecting  one host per line.
+"""
+import sys
+env.hosts = [line.strip() for line in sys.stdin.readlines()]
+t) 
+@parallel
+
+def restart_nginx():
+sudo('systemctl restart nginx')
+@parallel
+</code></pre>
+
+<p>Só explicando um pouco o exemplo acima. A função host_type, caso chamada, irá executar o comando <em>uname -s</em> em todos os servidores e irá retornar a saída para o terminal. A segunda função é uma boa opção caso você tenha uma lista dos hostnames ou IPS dos seus servidores em um arquivo txt por exemplo, no qual ele irá ler linha por linha do arquivo e executar o comando remotamente no servidor correspondente. Importante salientar, é necessário que você tenha a sua chave pública SSH exportada em todos os servidores, para que não seja exigido senha no momento da conexão.</p>
+
+<p>Agora, vamos chamar o Fabric para verificar o hostname de todos os servidores que estão listados no arquivo servers.txt por exemplo:</p>
+
+<pre><code># cat servers.txt |fab read_hosts host_type -P
+
+[server1] Executing task    'host_type'
+[server2] Executing task    'host_type'
+[server1] run: uname -s
+[server2] run: uname -s
+[server1] out: Linux
+[server1] out:
+
+[server2] out: Linux
+[server2] out:
+
+
+Done.
+</code></pre>
+
+<p>O comando acima executa um <em>cat</em> no arquivo servers.txt redirecionando saída para o <em>fab</em> ao qual executa a função <em>read_hosts</em> (que lê cada linha do arquivo <em>servers.txt</em> juntamente com a função <em>host_type</em>. O conteúdo do arquivo servers.txt possui o hostname ou o endereço IP dos servidores ao qual o Fab irá executar a função desejada.</p>
+
+<p>A saída para cada consulta é exibido na linha com o hostname do server e mais &ldquo;out&rdquo;:</p>
+
+<pre><code>[server1] out: Linux
+</code></pre>
+
+<p>Obs: O parâmetro &ldquo;-P&rdquo; no comando diz que o comando será executado paralelamente, ou seja, ele irá executar o comando ao mesmo tempo em todos os servidores.</p>
+
+<p>Era isso pessoal, é um artigo curto, mas tem o objetivo apenas de apresentar essa pequenha ferramenta que pode fazer toda a diferença no seu dia a dia. A documentação é bem completa e você poderá encontrar diversos exemplos de como montar as suas tasks&hellip;</p>
+
+<p>;-)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -559,6 +656,10 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/03/20/Automatizando-comandos-com-Fabric/">Automatizando comandos com Fabric</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/02/14/alterando-o-runlevel-no-centos7/">Alterando o Runlevel no CentOS7</a>
       </li>
     
@@ -572,10 +673,6 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
     
       <li class="post">
         <a href="/blog/2017/01/10/python-editor/">Python Editor</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/08/limpando-o-cache-do-java-no-linux/">Limpando o cache do Java no Linux</a>
       </li>
     
   </ul>
