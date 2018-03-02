@@ -4,7 +4,7 @@
   <title><![CDATA[Category: devops | rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/blog/categories/devops/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2018-03-01T22:29:13-03:00</updated>
+  <updated>2018-03-01T22:32:36-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -18,9 +18,7 @@
     <link href="http://rodrigolima.blog.br/blog/2018/03/01/eliminando-arquivos-nao-gerenciados-pelo-puppet/"/>
     <updated>2018-03-01T21:34:54-03:00</updated>
     <id>http://rodrigolima.blog.br/blog/2018/03/01/eliminando-arquivos-nao-gerenciados-pelo-puppet</id>
-    <content type="html"><![CDATA[<h1>Dica sobre Puppet</h1>
-
-<p>Você sabe o que é o Puppet? Caso você seja um Sysadmin ou um Dev sugiro fortemente que comece a estudar sobre. O Puppet é um utilitário de gerenciamento de configuração de software. O desenvolvimento do Puppet é coordenado pela Puppet Labs. Segue o link: <a href="https://puppet.com/">https://puppet.com/</a>.</p>
+    <content type="html"><![CDATA[<p>Você sabe o que é o Puppet? Caso você seja um Sysadmin ou um Dev sugiro fortemente que comece a estudar sobre. O Puppet é um utilitário de gerenciamento de configuração de software. O desenvolvimento do Puppet é coordenado pela Puppet Labs. Segue o link: <a href="https://puppet.com/">https://puppet.com/</a>.</p>
 
 <p>Não vou me aprofundar sobre os conceitos, vou apenas colocar uma dica que pode ser útil em algumas situações.</p>
 
