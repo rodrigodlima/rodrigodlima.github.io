@@ -6,7 +6,6 @@ comments: true
 categories: DevOps Puppet
 ---
 
-# Dica sobre Puppet
 
 Você sabe o que é o Puppet? Caso você seja um Sysadmin ou um Dev sugiro fortemente que comece a estudar sobre. O Puppet é um utilitário de gerenciamento de configuração de software. O desenvolvimento do Puppet é coordenado pela Puppet Labs. Segue o link: [https://puppet.com/](https://puppet.com/).
 
