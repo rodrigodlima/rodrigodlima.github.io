@@ -9,8 +9,7 @@
   <meta name="author" content="Rodrigo de Lima Silva">
 
   
-  <meta name="description" content="Este post é apenas uma dica de como automatizar algumas tarefas remotamente em servidores Linux.
-Hoje em dia, automatizar tarefas é algo extremamente &hellip;">
+  <meta name="description" content="Dica sobre Puppet Você sabe o que é o Puppet? Caso você seja um Sysadmin ou um Dev sugiro fortemente que comece a estudar sobre. O Puppet é um &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,57 @@ Hoje em dia, automatizar tarefas é algo extremamente &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2018/03/01/eliminando-arquivos-nao-gerenciados-pelo-puppet/">Eliminando arquivos não gerenciados pelo Puppet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-03-01T21:34:54-03:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2018</span></span> <span class='time'>9:34 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Dica sobre Puppet</h1>
+
+<p>Você sabe o que é o Puppet? Caso você seja um Sysadmin ou um Dev sugiro fortemente que comece a estudar sobre. O Puppet é um utilitário de gerenciamento de configuração de software. O desenvolvimento do Puppet é coordenado pela Puppet Labs. Segue o link: <a href="https://puppet.com/">https://puppet.com/</a>.</p>
+
+<p>Não vou me aprofundar sobre os conceitos, vou apenas colocar uma dica que pode ser útil em algumas situações.</p>
+
+<p>Você possui vários arquivos de configurações de vhosts do Apache gerenciados pelo Puppet, por exemplo, mas não quer que sejam criados novos arquivos manualmente no qual esses arquivos não sejam orquestrados/gerenciados pelo Puppet, pois com isso você poderia perder o controle do que está sendo colocado em produção.</p>
+
+<p>Para resolver isso, existe um atributo que pode nos ajudar com isso, e esse atributo é do resource type &ldquo;file&rdquo;, o <strong>purge</strong></p>
+
+<pre><code>    file { '/etc/httpd/confs.d': 
+        ensure  =&gt; 'directory', 
+        recurse =&gt; true, 
+        purge   =&gt; true, 
+    } 
+
+    file { '/etc/httpd/confs.d/www.conf':
+        ensure =&gt; 'present',
+        source =&gt; 'puppet://modules/httpd/www.conf',
+    } 
+</code></pre>
+
+<p>Com essa configuração acima, o Puppet irá manter no diretório /etc/httpd/confs.d apenas o arquivo www.conf. Todos arquivos criados manualmente serão removidos após o agente realizar a comunicação com o Puppet server.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -656,6 +706,10 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/03/01/eliminando-arquivos-nao-gerenciados-pelo-puppet/">Eliminando arquivos não gerenciados pelo Puppet</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/03/20/Automatizando-comandos-com-Fabric/">Automatizando comandos com Fabric</a>
       </li>
     
@@ -669,10 +723,6 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
     
       <li class="post">
         <a href="/blog/2017/01/10/bash-completion-for-macos-sierra/">Bash Completion for MacOS Sierra</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/01/10/python-editor/">Python Editor</a>
       </li>
     
   </ul>
@@ -726,7 +776,7 @@ Professional Institute. Atualmente tenho me especializado em gerenciamento de Da
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Rodrigo de Lima Silva -
+  Copyright &copy; 2018 - Rodrigo de Lima Silva -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[rodrigolima.blog.br]]></title>
   <link href="http://rodrigolima.blog.br/atom.xml" rel="self"/>
   <link href="http://rodrigolima.blog.br/"/>
-  <updated>2017-03-20T16:53:49-03:00</updated>
+  <updated>2018-03-01T22:29:13-03:00</updated>
   <id>http://rodrigolima.blog.br/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Eliminando arquivos não gerenciados pelo Puppet]]></title>
+    <link href="http://rodrigolima.blog.br/blog/2018/03/01/eliminando-arquivos-nao-gerenciados-pelo-puppet/"/>
+    <updated>2018-03-01T21:34:54-03:00</updated>
+    <id>http://rodrigolima.blog.br/blog/2018/03/01/eliminando-arquivos-nao-gerenciados-pelo-puppet</id>
+    <content type="html"><![CDATA[<h1>Dica sobre Puppet</h1>
+
+<p>Você sabe o que é o Puppet? Caso você seja um Sysadmin ou um Dev sugiro fortemente que comece a estudar sobre. O Puppet é um utilitário de gerenciamento de configuração de software. O desenvolvimento do Puppet é coordenado pela Puppet Labs. Segue o link: <a href="https://puppet.com/">https://puppet.com/</a>.</p>
+
+<p>Não vou me aprofundar sobre os conceitos, vou apenas colocar uma dica que pode ser útil em algumas situações.</p>
+
+<p>Você possui vários arquivos de configurações de vhosts do Apache gerenciados pelo Puppet, por exemplo, mas não quer que sejam criados novos arquivos manualmente no qual esses arquivos não sejam orquestrados/gerenciados pelo Puppet, pois com isso você poderia perder o controle do que está sendo colocado em produção.</p>
+
+<p>Para resolver isso, existe um atributo que pode nos ajudar com isso, e esse atributo é do resource type &ldquo;file&rdquo;, o <strong>purge</strong></p>
+
+<pre><code>    file { '/etc/httpd/confs.d': 
+        ensure  =&gt; 'directory', 
+        recurse =&gt; true, 
+        purge   =&gt; true, 
+    } 
+
+    file { '/etc/httpd/confs.d/www.conf':
+        ensure =&gt; 'present',
+        source =&gt; 'puppet://modules/httpd/www.conf',
+    } 
+</code></pre>
+
+<p>Com essa configuração acima, o Puppet irá manter no diretório /etc/httpd/confs.d apenas o arquivo www.conf. Todos arquivos criados manualmente serão removidos após o agente realizar a comunicação com o Puppet server.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Automatizando comandos com Fabric]]></title>
