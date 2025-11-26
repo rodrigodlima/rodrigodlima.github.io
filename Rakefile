@@ -12,7 +12,7 @@ rsync_args     = ""  # Any extra arguments to pass to rsync
 deploy_default = "push"
 
 # This will be configured for you when you run config_deploy
-deploy_branch  = "master"
+deploy_branch  = "main"
 
 ## -- Misc Configs -- ##
 
@@ -321,20 +321,20 @@ task :setup_github_pages, :repo do |t, args|
   else
     user = repo_url.match(/github\.com\/([^\/]+)/)[1]
   end
-  branch = (repo_url.match(/\/[\w-]+\.github\.(?:io|com)/).nil?) ? 'gh-pages' : 'master'
+  branch = (repo_url.match(/\/[\w-]+\.github\.(?:io|com)/).nil?) ? 'gh-pages' : 'main'
   project = (branch == 'gh-pages') ? repo_url.match(/([^\/]+?)(\.git|$)/i)[1] : ''
   unless (`git remote -v` =~ /origin.+?octopress(?:\.git)?/).nil?
     # If octopress is still the origin remote (from cloning) rename it to octopress
     system "git remote rename origin octopress"
-    if branch == 'master'
+    if branch == 'main'
       # If this is a user/organization pages repository, add the correct origin remote
       # and checkout the source branch for committing changes to the blog source.
       system "git remote add origin #{repo_url}"
       puts "Added remote #{repo_url} as origin"
-      system "git config branch.master.remote origin"
+      system "git config branch.main.remote origin"
       puts "Set origin as default remote"
-      system "git branch -m master source"
-      puts "Master branch renamed to 'source' for committing your blog source files"
+      system "git branch -m main source"
+      puts "Main branch renamed to 'source' for committing your blog source files"
     else
       unless !public_dir.match("#{project}").nil?
         system "rake set_root_dir[#{project}]"
