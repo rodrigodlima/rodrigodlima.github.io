@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Índice de Posts"
+title: "Posts Index"
 comments: false
 sharing: true
 footer: true
 ---
 
-## Posts por Categoria
+## Posts by Category
 
 {% assign sorted_categories = site.categories | sort %}
 {% for category in sorted_categories %}
@@ -15,13 +15,13 @@ footer: true
 
 ### {{ category_name }}
   {% for post in posts %}
-  - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%d/%m/%Y" }}
+  - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%m/%d/%Y" }}
   {% endfor %}
 {% endfor %}
 
 ---
 
-## Posts por Ano
+## Posts by Year
 
 {% for post in site.posts %}
   {% assign current_year = post.date | date: "%Y" %}
@@ -32,5 +32,5 @@ footer: true
     {% assign previous_year = current_year %}
   {% endif %}
 
-- **{{ post.date | date: "%d/%m" }}** - [{{ post.title }}]({{ post.url }})
+- **{{ post.date | date: "%m/%d" }}** - [{{ post.title }}]({{ post.url }})
 {% endfor %}
