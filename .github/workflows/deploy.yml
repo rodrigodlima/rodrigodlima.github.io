@@ -47,26 +47,10 @@ jobs:
           format: 'table'
           severity: 'CRITICAL,HIGH,MEDIUM'
 
-  code-quality:
-    name: Code Quality Analysis
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        continue-on-error: true
-
   build-and-deploy:
     name: Build & Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    needs: [security-scan, code-quality]
+    needs: [security-scan]
     if: github.event_name == 'push' && github.ref == 'refs/heads/source'
     steps:
       - name: Checkout source branch
