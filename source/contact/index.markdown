@@ -1,13 +1,13 @@
 ---
 layout: page
-title: "contato"
+title: "Contact"
 date: 2015-01-28 18:13
 comments: true
 sharing: true
 footer: true
 ---
 
-##**Segue abaixo meus contatos**
+##**Contact Information**
 ***
 
 
@@ -21,5 +21,5 @@ footer: true
 ### Gtalk
 	rodrigodlima
 
-### Linkdedin Profile
+### LinkedIn Profile
 	http://br.linkedin.com/pub/rodrigo-de-lima-silva/9/126/272
