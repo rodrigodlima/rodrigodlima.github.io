@@ -12,14 +12,11 @@ footer: true
 
 
 
-###E-mail
+### E-mail
 	rodrigodlima@gmail.com
 
-###Skype
-	rodrigodlima
-
-### Gtalk
-	rodrigodlima
-
 ### LinkedIn Profile
-	http://br.linkedin.com/pub/rodrigo-de-lima-silva/9/126/272
+	https://linkedin.com/in/rodrigodlima
+
+### Github
+	https://github.com/rodrigodlima
