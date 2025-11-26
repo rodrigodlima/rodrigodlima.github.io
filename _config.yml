@@ -4,7 +4,7 @@
 
 url: https://rodrigodlima.github.io
 title: rodrigolima.github.io
-subtitle:  "$echo something | sed 's/something/Vida geek, Tecnologia da Informação, cotidiano e afins/g'"
+subtitle:  "$echo something | sed 's/something/Geek life, Information Technology, daily life and related topics/g'"
 author: Rodrigo de Lima Silva
 simple_search: https://www.google.com/search
 description: DevOPS, Geek and Technologies Informations thinks!
