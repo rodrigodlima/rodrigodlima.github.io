@@ -3,14 +3,14 @@ layout: post
 title: "Python Editor"
 date: 2017-01-10 15:35:44 -0200
 comments: true
-categories: 
+categories: [Python, Development, Tutorial]
 ---
 
-Apenas uma dica para quem está começando a desenvolver em Python. Recomendo a utilização do Editor Atom https://atom.io/.
-Ele é um editor de texto desenvolvido pelo pessoal do Github.
+Just a tip for those who are starting to develop in Python. I recommend using the Atom Editor https://atom.io/.
+It is a text editor developed by the folks at Github.
 
-E após a instalação do Atom, instale o plugin linter-pylama: https://atom.io/packages/linter-pylama
+And after installing Atom, install the linter-pylama plugin: https://atom.io/packages/linter-pylama
 
-Com esse plugin, ele te oferece várias features e te ajuda a desenvolver seguindo as recomendações do PEP8 (Style Guide for Python Code)
+With this plugin, it offers you several features and helps you develop following the PEP8 recommendations (Style Guide for Python Code)
 
 
