@@ -82,25 +82,19 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
-          bundler-cache: true
+          ruby-version: '2.7'
+          bundler-cache: false
 
-      - name: Generate site
-        run: bundle exec rake generate
-
-      - name: Deploy to main branch
+      - name: Update RubyGems and install dependencies
         run: |
-          cd public
-          git init
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Site updated at $(date -u '+%Y-%m-%d %H:%M:%S') UTC
+          gem update --system 3.4.22
+          gem install bundler -v 1.17.2
+          bundle install
 
-          🤖 Deployed by GitHub Actions
-          Commit: ${{ github.sha }}
-          "
-          git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+      - name: Generate and Deploy
+        run: bundle exec rake deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deployment summary
         run: |
