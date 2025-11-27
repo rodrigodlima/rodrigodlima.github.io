@@ -1,0 +1,30 @@
+# Trivy Configuration File
+# https://aquasecurity.github.io/trivy/latest/docs/configuration/
+
+# Scan settings
+scan:
+  # Skip files/directories
+  skip-dirs:
+    - "node_modules"
+    - "vendor"
+    - ".bundle"
+    - "_deploy"
+    - "public"
+    - ".sass-cache"
+    - ".pygments-cache"
+    - ".git"
+
+  # Skip specific files
+  skip-files:
+    - "*.min.js"
+    - "*.min.css"
+
+# Secret scanning configuration
+secret:
+  config: .trivy-secret.yaml
+
+# Vulnerability scanning
+vulnerability:
+  type:
+    - os
+    - library

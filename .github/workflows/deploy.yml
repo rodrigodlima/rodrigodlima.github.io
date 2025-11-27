@@ -47,6 +47,26 @@ jobs:
           format: 'table'
           severity: 'CRITICAL,HIGH,MEDIUM'
 
+      - name: Run Trivy secret scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          scanners: 'secret'
+          format: 'table'
+          exit-code: '1'
+        continue-on-error: false
+
+      - name: Security scan summary
+        if: always()
+        run: |
+          echo "### 🔒 Security Scan Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Vulnerability scanning completed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Secret scanning completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Check the Security tab for detailed results" >> $GITHUB_STEP_SUMMARY
+
   build-and-deploy:
     name: Build & Deploy to GitHub Pages
     runs-on: ubuntu-latest

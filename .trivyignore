@@ -1,0 +1,8 @@
+# Trivy Ignore File
+# Add CVEs or security findings to ignore here
+# Format: CVE-YYYY-XXXXX or AVD-XXX-XXXX
+
+# Example:
+# CVE-2021-12345
+
+# Note: Only ignore findings after careful review and documented justification
