@@ -91,10 +91,28 @@ jobs:
           gem install bundler -v 1.17.2
           bundle install
 
-      - name: Generate and Deploy
-        run: bundle exec rake deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate site
+        run: bundle exec rake generate
+
+      - name: Setup deploy directory
+        run: |
+          rm -rf _deploy
+          git clone -b main https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git _deploy
+
+      - name: Deploy to main branch
+        run: |
+          cd _deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          rm -rf ./*
+          cp -r ../public/* .
+          git add -A
+          git commit -m "Site updated at $(date -u '+%Y-%m-%d %H:%M:%S') UTC
+
+          🤖 Deployed by GitHub Actions
+          Commit: ${{ github.sha }}
+          " || echo "No changes to commit"
+          git push origin main
 
       - name: Deployment summary
         run: |
