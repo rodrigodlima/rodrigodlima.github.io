@@ -4,7 +4,7 @@
   <title><![CDATA[Category: devops | rodrigolima.github.io]]></title>
   <link href="https://rodrigodlima.github.io/blog/categories/devops/atom.xml" rel="self"/>
   <link href="https://rodrigodlima.github.io/"/>
-  <updated>2025-11-27T02:42:25+00:00</updated>
+  <updated>2025-11-27T14:03:46+00:00</updated>
   <id>https://rodrigodlima.github.io/</id>
   <author>
     <name><![CDATA[Rodrigo de Lima Silva]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Immutable Infrastructure in GCP]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2025/11/27/immutable-infrastructure-in-gcp/"/>
+    <updated>2025-11-27T09:06:58-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2025/11/27/immutable-infrastructure-in-gcp</id>
+    <content type="html"><![CDATA[<p>Do you know what Immutable Infrastructure is? If you don&rsquo;t, I think you should ;-)</p>
+
+<p>Let me explain a bit about it.</p>
+
+<p>Immutable infrastructure is an infrastructure paradigm in which servers are never modified after they&rsquo;re deployed. If something needs to be updated, fixed, or modified in any way, new servers built from a common image with the appropriate changes are provisioned to replace the old ones. After they&rsquo;re validated, they&rsquo;re put into use and the old ones are decommissioned<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+
+<p>I created a code example for it in my GitHub account. There is complete documentation in the repository&rsquo;s markdown files.</p>
+
+<p><a href="https://github.com/rodrigodlima/immutable-Infrastructure">GitHub repository</a></p>
+
+<hr />
+
+<h2>References</h2>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<a href="https://www.digitalocean.com/community/tutorials/what-is-immutable-infrastructure">What is Immutable Infrastructure? - Hazel Virdó</a><a href="#fnref:1" rev="footnote">&#8617;</a></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Removing Unmanaged Files with Puppet]]></title>
