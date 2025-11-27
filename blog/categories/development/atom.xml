@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: development | rodrigolima.github.io]]></title>
+  <link href="https://rodrigodlima.github.io/blog/categories/development/atom.xml" rel="self"/>
+  <link href="https://rodrigodlima.github.io/"/>
+  <updated>2025-11-27T02:42:25+00:00</updated>
+  <id>https://rodrigodlima.github.io/</id>
+  <author>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python Editor]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/01/10/python-editor/"/>
+    <updated>2017-01-10T15:35:44-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/01/10/python-editor</id>
+    <content type="html"><![CDATA[<p>Just a tip for those who are starting to develop in Python. I recommend using the Atom Editor <a href="https://atom.io/.">https://atom.io/.</a>
+It is a text editor developed by the folks at Github.</p>
+
+<p>And after installing Atom, install the linter-pylama plugin: <a href="https://atom.io/packages/linter-pylama">https://atom.io/packages/linter-pylama</a></p>
+
+<p>With this plugin, it offers you several features and helps you develop following the PEP8 recommendations (Style Guide for Python Code)</p>
+]]></content>
+  </entry>
+  
+</feed>

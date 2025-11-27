@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: automation | rodrigolima.github.io]]></title>
+  <link href="https://rodrigodlima.github.io/blog/categories/automation/atom.xml" rel="self"/>
+  <link href="https://rodrigodlima.github.io/"/>
+  <updated>2025-11-27T02:42:25+00:00</updated>
+  <id>https://rodrigodlima.github.io/</id>
+  <author>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Automating Commands with Fabric]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/03/20/automating-commands-with-fabric/"/>
+    <updated>2017-03-20T15:43:21-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/03/20/automating-commands-with-fabric</id>
+    <content type="html"><![CDATA[<p>This post is just a tip on how to automate some tasks remotely on Linux servers.
+Nowadays, automating tasks is extremely necessary in large environments and even in small ones, to avoid work and waste of time.
+I usually use Puppet as configuration management for my environment, along with Github for version control of server configurations. Gone are the days when Git was used only by developers, today infrastructure people have used it a lot, following the DevOps concept.</p>
+
+<p>However, Puppet has some limitations, so to speak, for executing remote commands. Sometimes you just want to restart some daemon on your servers. This is not a problem if you have two or three servers, but have you imagined doing this on 200 servers? It will take quite a while until you finish this, right? That&rsquo;s where <a href="http://www.fabfile.org/">Fabric</a> comes in. Fabric is a Python library and command-line utility that uses SSH to execute administrative tasks remotely.</p>
+
+<p>There is good documentation on the <a href="http://www.fabfile.org/">Fabric</a> website, but the objective here is just to demonstrate a practical example of how to use it to execute some tasks remotely.</p>
+
+<p>Before we start, the installation of Fabric can be done with the pip command:</p>
+
+<pre><code># pip install fabric
+</code></pre>
+
+<p>You define the tasks you want to execute in a file called &ldquo;fabfile.py&rdquo;. You can define multiple &ldquo;functions&rdquo; in this file, and then you just &ldquo;call&rdquo; the desired function, which makes it much simpler to define multiple tasks without the need to be editing the file for each execution.</p>
+
+<p>Here, an example of the content of the <em>fabfile.py</em> file:</p>
+
+<pre><code>from fabric.api import run, sudo, env, settings,    hide, parallel
+from fabric.colors import yellow, green
+def host_type():
+run('uname -s')
+
+def read_hosts():
+"""
+Reads hosts from sys.stdin line by line, expecting  one host per line.
+"""
+import sys
+env.hosts = [line.strip() for line in sys.stdin.readlines()]
+t)
+@parallel
+
+def restart_nginx():
+sudo('systemctl restart nginx')
+@parallel
+</code></pre>
+
+<p>Just explaining a bit about the example above. The host_type function, when called, will execute the <em>uname -s</em> command on all servers and will return the output to the terminal. The second function is a good option if you have a list of hostnames or IPs of your servers in a txt file for example, which it will read line by line from the file and execute the command remotely on the corresponding server. It&rsquo;s important to note, you need to have your public SSH key exported to all servers, so that no password is required at the time of connection.</p>
+
+<p>Now, let&rsquo;s call Fabric to check the hostname of all servers that are listed in the servers.txt file for example:</p>
+
+<pre><code># cat servers.txt |fab read_hosts host_type -P
+
+[server1] Executing task    'host_type'
+[server2] Executing task    'host_type'
+[server1] run: uname -s
+[server2] run: uname -s
+[server1] out: Linux
+[server1] out:
+
+[server2] out: Linux
+[server2] out:
+
+
+Done.
+</code></pre>
+
+<p>The above command executes a <em>cat</em> on the servers.txt file redirecting the output to <em>fab</em> which executes the <em>read_hosts</em> function (which reads each line of the <em>servers.txt</em> file) together with the <em>host_type</em> function. The content of the servers.txt file contains the hostname or IP address of the servers on which Fab will execute the desired function.</p>
+
+<p>The output for each query is displayed on the line with the server hostname and &ldquo;out&rdquo;:</p>
+
+<pre><code>[server1] out: Linux
+</code></pre>
+
+<p>Note: The &ldquo;-P&rdquo; parameter in the command means that the command will be executed in parallel, that is, it will execute the command at the same time on all servers.</p>
+
+<p>That&rsquo;s it folks, it&rsquo;s a short article, but it only aims to present this little tool that can make all the difference in your day to day. The documentation is very complete and you will be able to find several examples of how to assemble your tasks&hellip;</p>
+
+<p>;-)</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[rodrigolima.github.io]]></title>
+  <link href="https://rodrigodlima.github.io/atom.xml" rel="self"/>
+  <link href="https://rodrigodlima.github.io/"/>
+  <updated>2025-11-27T02:42:25+00:00</updated>
+  <id>https://rodrigodlima.github.io/</id>
+  <author>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Removing Unmanaged Files with Puppet]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2018/03/01/removing-unmanaged-files-with-puppet/"/>
+    <updated>2018-03-01T21:34:54-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2018/03/01/removing-unmanaged-files-with-puppet</id>
+    <content type="html"><![CDATA[<p>Do you know what Puppet is? If you&rsquo;re a Sysadmin or a Dev, I strongly suggest you start learning about it. Puppet is a software configuration management utility. Puppet&rsquo;s development is coordinated by Puppet Labs. Here&rsquo;s the link: <a href="https://puppet.com/">https://puppet.com/</a>.</p>
+
+<p>I won&rsquo;t go deep into the concepts, I&rsquo;ll just share a tip that can be useful in some situations.</p>
+
+<p>You have multiple Apache vhost configuration files managed by Puppet, for example, but you don&rsquo;t want new files to be created manually that aren&rsquo;t orchestrated/managed by Puppet, as this could cause you to lose control of what&rsquo;s being deployed to production.</p>
+
+<p>To solve this, there&rsquo;s an attribute that can help us with this, and it&rsquo;s from the &ldquo;file&rdquo; resource type: <strong>purge</strong></p>
+
+<pre><code>file { '/etc/httpd/confs.d':
+    ensure  =&gt; 'directory',
+    recurse =&gt; true,
+    purge   =&gt; true,
+}
+
+file { '/etc/httpd/confs.d/www.conf':
+    ensure =&gt; 'present',
+    source =&gt; 'puppet://modules/httpd/www.conf',
+}
+</code></pre>
+
+<p>With the above configuration, Puppet will maintain only the www.conf file in the /etc/httpd/confs.d directory. All manually created files will be removed after the agent communicates with the Puppet server.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automating Commands with Fabric]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/03/20/automating-commands-with-fabric/"/>
+    <updated>2017-03-20T15:43:21-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/03/20/automating-commands-with-fabric</id>
+    <content type="html"><![CDATA[<p>This post is just a tip on how to automate some tasks remotely on Linux servers.
+Nowadays, automating tasks is extremely necessary in large environments and even in small ones, to avoid work and waste of time.
+I usually use Puppet as configuration management for my environment, along with Github for version control of server configurations. Gone are the days when Git was used only by developers, today infrastructure people have used it a lot, following the DevOps concept.</p>
+
+<p>However, Puppet has some limitations, so to speak, for executing remote commands. Sometimes you just want to restart some daemon on your servers. This is not a problem if you have two or three servers, but have you imagined doing this on 200 servers? It will take quite a while until you finish this, right? That&rsquo;s where <a href="http://www.fabfile.org/">Fabric</a> comes in. Fabric is a Python library and command-line utility that uses SSH to execute administrative tasks remotely.</p>
+
+<p>There is good documentation on the <a href="http://www.fabfile.org/">Fabric</a> website, but the objective here is just to demonstrate a practical example of how to use it to execute some tasks remotely.</p>
+
+<p>Before we start, the installation of Fabric can be done with the pip command:</p>
+
+<pre><code># pip install fabric
+</code></pre>
+
+<p>You define the tasks you want to execute in a file called &ldquo;fabfile.py&rdquo;. You can define multiple &ldquo;functions&rdquo; in this file, and then you just &ldquo;call&rdquo; the desired function, which makes it much simpler to define multiple tasks without the need to be editing the file for each execution.</p>
+
+<p>Here, an example of the content of the <em>fabfile.py</em> file:</p>
+
+<pre><code>from fabric.api import run, sudo, env, settings,    hide, parallel
+from fabric.colors import yellow, green
+def host_type():
+run('uname -s')
+
+def read_hosts():
+"""
+Reads hosts from sys.stdin line by line, expecting  one host per line.
+"""
+import sys
+env.hosts = [line.strip() for line in sys.stdin.readlines()]
+t)
+@parallel
+
+def restart_nginx():
+sudo('systemctl restart nginx')
+@parallel
+</code></pre>
+
+<p>Just explaining a bit about the example above. The host_type function, when called, will execute the <em>uname -s</em> command on all servers and will return the output to the terminal. The second function is a good option if you have a list of hostnames or IPs of your servers in a txt file for example, which it will read line by line from the file and execute the command remotely on the corresponding server. It&rsquo;s important to note, you need to have your public SSH key exported to all servers, so that no password is required at the time of connection.</p>
+
+<p>Now, let&rsquo;s call Fabric to check the hostname of all servers that are listed in the servers.txt file for example:</p>
+
+<pre><code># cat servers.txt |fab read_hosts host_type -P
+
+[server1] Executing task    'host_type'
+[server2] Executing task    'host_type'
+[server1] run: uname -s
+[server2] run: uname -s
+[server1] out: Linux
+[server1] out:
+
+[server2] out: Linux
+[server2] out:
+
+
+Done.
+</code></pre>
+
+<p>The above command executes a <em>cat</em> on the servers.txt file redirecting the output to <em>fab</em> which executes the <em>read_hosts</em> function (which reads each line of the <em>servers.txt</em> file) together with the <em>host_type</em> function. The content of the servers.txt file contains the hostname or IP address of the servers on which Fab will execute the desired function.</p>
+
+<p>The output for each query is displayed on the line with the server hostname and &ldquo;out&rdquo;:</p>
+
+<pre><code>[server1] out: Linux
+</code></pre>
+
+<p>Note: The &ldquo;-P&rdquo; parameter in the command means that the command will be executed in parallel, that is, it will execute the command at the same time on all servers.</p>
+
+<p>That&rsquo;s it folks, it&rsquo;s a short article, but it only aims to present this little tool that can make all the difference in your day to day. The documentation is very complete and you will be able to find several examples of how to assemble your tasks&hellip;</p>
+
+<p>;-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Changing Runlevel on CentOS7]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/02/14/changing-runlevel-on-centos7/"/>
+    <updated>2017-02-14T16:10:34-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/02/14/changing-runlevel-on-centos7</id>
+    <content type="html"><![CDATA[<p>Just a quick tip for those who want to change the Runlevel on CentOS7 or RHEL7.</p>
+
+<p>In previous versions, such as CentOS6, you just had to edit the /etc/inittab file and change the runlevel in the following line:</p>
+
+<pre><code>id:3:initdefault:
+</code></pre>
+
+<p>In the example above, the runlevel is set to <b>&ldquo;3&rdquo;</b>. Runlevel 3 means <b>&ldquo;Full multiuser mode&rdquo;</b>, that is, it starts the system normally with network support and mainly in text mode. If you want to change it to start the system with the graphical interface (KDE, Gnome, etc), just change the line above to <b>&ldquo;5&rdquo;</b>.</p>
+
+<p>With the change from Init to Systemd starting from CentOS7 (If you want to know more about this: <a href="http://www.tecmint.com/systemd-replaces-init-in-linux/">Read here</a>, the way the runlevel is changed changes slightly (quite a bit actually ;-)</p>
+
+<h2>Checking current runlevel</h2>
+
+<pre><code>[root@localhost ~] systemctl get-default
+multi-user.target
+</code></pre>
+
+<p>The multi-user.target is equivalent to runlevel &ldquo;3&rdquo;, that is, text mode.</p>
+
+<h2>Changing the runlevel</h2>
+
+<p>If you want to change the runlevel to graphical mode, or &ldquo;runlevel 5&rdquo; as it was known in previous versions:</p>
+
+<pre><code>[root@localhost ~] systemctl set-default graphical.target
+</code></pre>
+
+<p>Just restart the system and you will see that it will start in graphical mode. To check the other Runlevels:</p>
+
+<pre><code>[root@localhost ~] systemctl list-units --type=target
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Maintaining Octopress Blog on Different Machines]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/01/11/maintaining-octopress-blog-on-different-machines/"/>
+    <updated>2017-01-11T21:38:23-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/01/11/maintaining-octopress-blog-on-different-machines</id>
+    <content type="html"><![CDATA[<p>In this post, I will explain how to maintain your blog with Octopress in different places, or rather, on different machines.
+Maybe you need to write your posts on your workstation at work and sometimes at home for example, or maybe you have reinstalled your OS.</p>
+
+<p>It is not enough to just clone your Octopress repository from Github, as it only &ldquo;clones&rdquo; the blog &ldquo;renders&rdquo; locally.
+The Octopress repository on Github has two branches, <code>source</code> and <code>master</code>. The <code>source</code> branch contains the sources that are used to generate the blog, and the <code>master</code> branch contains the blog itself.</p>
+
+<p>When the local folder is created following the <a href="http://octopress.org/docs/setup">Octopress Setup Guide</a>, the master branch is in the _deploy subfolder. Since this folder starts with an underscore, it is ignored when pushing to the repository: <code>git push origin source</code>. That&rsquo;s why it&rsquo;s necessary to follow these steps:</p>
+
+<h3>Cloning the repository</h3>
+
+<p>First, create an empty directory and do a <code>git init</code> from scratch:</p>
+
+<pre><code>$ mkdir &lt;directory&gt; &amp;&amp; cd &lt;directory&gt; &amp;&amp; git init
+</code></pre>
+
+<p>Add the remote repository of your blog and do a <code>pull</code> of the source branch:</p>
+
+<pre><code>$ git remote add origin git@github.com:username/username.github.io.git
+$ git pull origin source
+</code></pre>
+
+<p>Create the local <code>source</code> branch and remove the local <code>master</code> branch to avoid confusion with the remote branch:</p>
+
+<pre><code>$ git checkout -b source
+$ git branch -D master
+</code></pre>
+
+<p>Now, create the empty _deploy directory and sync with the remote <code>master</code> branch:</p>
+
+<pre><code>$ mkdir _deploy
+$ git init
+$ git remote add origin git@github.com:username/username.github.io.git
+$ git pull origin master
+</code></pre>
+
+<p>Now everything is ready to update the Blog.</p>
+
+<p>Create a new post:</p>
+
+<pre><code>$ rake new_post["New Post"]
+$ rake generate
+$ rake deploy
+</code></pre>
+
+<p>And don&rsquo;t forget to push the source branch:</p>
+
+<pre><code>$ git push origin source
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bash Completion for MacOS Sierra]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/01/10/bash-completion-for-macos-sierra/"/>
+    <updated>2017-01-10T18:27:40-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/01/10/bash-completion-for-macos-sierra</id>
+    <content type="html"><![CDATA[<p>Uma coisa que sinto falta utilizando o MacOS da Apple é o Bash Completion. Com ele instalado, me poupa bastante digitação e tempo durante
+o meu dia de trabalho. Basicamente, ele preenche automaticamente alguns comandos somente apertando a tecla &ldquo;TAB&rdquo;. Isso é natural no bash para
+completar comandos, mas as opções e demais informações você precisa digitar. Com o Bash Completion, eu consigo digitar por exemplo:</p>
+
+<pre><code>$ ssh &lt;TAB&gt;
+</code></pre>
+
+<p>Com isso ele lista todos os hosts que eu já digitei anteriormente. Isso é muito útil no dia a dia. É claro que isso pode gerar uma pequena lentidão
+na execução do comando e também consome maiores recursos do hardware, mas para mim isso vale a pena pela facilidade.</p>
+
+<p>Para instalar é bem simples, você precisa usar o &ldquo;Port&rdquo; ou &ldquo;Homebrew&rdquo;. Esses caras são os gerenciadores de pacotes compatíveis no MacOS. São como
+Yum e Apt em sistemas Linux.</p>
+
+<p>Não vou cobrir aqui a instalação desses caras, mas vou deixar abaixo o link para caso você ainda não tenha instalado:</p>
+
+<p><a href="https://www.macports.org/">https://www.macports.org/</a></p>
+
+<p><a href="http://brew.sh/">http://brew.sh/</a></p>
+
+<p>Para instalar o Bash Completion com o Port:</p>
+
+<p>$ sudo port install bash-completion</p>
+
+<p>Depois de instalado, basta você inserir o seguinte conteúdo no seu .bash_profile:</p>
+
+<pre><code># bash-completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+       . /opt/local/etc/profile.d/bash_completion.sh
+fi
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python Editor]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/01/10/python-editor/"/>
+    <updated>2017-01-10T15:35:44-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/01/10/python-editor</id>
+    <content type="html"><![CDATA[<p>Just a tip for those who are starting to develop in Python. I recommend using the Atom Editor <a href="https://atom.io/.">https://atom.io/.</a>
+It is a text editor developed by the folks at Github.</p>
+
+<p>And after installing Atom, install the linter-pylama plugin: <a href="https://atom.io/packages/linter-pylama">https://atom.io/packages/linter-pylama</a></p>
+
+<p>With this plugin, it offers you several features and helps you develop following the PEP8 recommendations (Style Guide for Python Code)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clearing Java Cache on Linux]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2015/04/08/clearing-java-cache-on-linux/"/>
+    <updated>2015-04-08T17:54:20-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2015/04/08/clearing-java-cache-on-linux</id>
+    <content type="html"><![CDATA[<p>This is a quick tip for clearing Java cache on Linux.</p>
+
+<p>It&rsquo;s simple. Just open the &ldquo;<strong>Java Control Panel</strong>&rdquo;, to do this, type the command &ldquo;<strong>javaws -viewer</strong>&rdquo; in the terminal.</p>
+
+<pre><code>$ javaws -viewer
+</code></pre>
+
+<p>Now just click the Settings button under &ldquo;Temporary Internet Files&rdquo; and delete the cache.</p>
+
+<p>There are other Java configurations that can be performed in the <strong>Java Control Center</strong>, but I won&rsquo;t go into details here.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Installation and Configuration]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2015/01/28/octopress-installation-and-configuration/"/>
+    <updated>2015-01-28T11:40:58-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2015/01/28/octopress-installation-and-configuration</id>
+    <content type="html"><![CDATA[<p>I usually use 2 or 3 devices to write my posts, I use my work laptop, my personal MacBook and sometimes my computer at home. With that, I thought it would be interesting to make my blog code available on some virtual cloud drive, so I can post any article on any device I&rsquo;m using, just needing to have it configured for that task. Since I&rsquo;ve been using Dropbox for a while, I thought it would be interesting to keep my blog there.</p>
+
+<p>The objective here is to explain the installation and configuration process of Octopress. Most of the steps here are in the official Octopress documentation, but there are some extra details that I had some trouble with and it&rsquo;s important to highlight here.</p>
+
+<p>Let&rsquo;s go then.</p>
+
+<p><strong> Install Octopress dependencies: </strong></p>
+
+<blockquote><p>$ sudo yum install git ruby rubygems ruby-devel</p></blockquote>
+
+<p>In the Octopress documentation it is suggested to install some ExecJS runtime JavaScript. One of them is nodejs. In the case of Fedora, it is necessary to install the RPM package, just installing the Gem doesn&rsquo;t work. It is also necessary to have the EPEL repository installed and configured.</p>
+
+<blockquote><p>$ sudo yum install nodejs</p></blockquote>
+
+<p><strong> Download the latest version of Octopress </strong></p>
+
+<p>Note: Download directly to your Dropbox directory, usually in ~/Dropbox</p>
+
+<blockquote><p>$ pwd</p>
+
+<p>/home/rodrigo.lima/Dropbox/Blog</p>
+
+<p>$ cd octopress/</p>
+
+<p>$ pwd</p>
+
+<p>/home/rodrigo.lima/Dropbox/Blog/octopress</p></blockquote>
+
+<p><strong> Also install some necessary Ruby dependencies: </strong></p>
+
+<blockquote><p>$ gem install execjs</p>
+
+<p>$ gem install bundler</p>
+
+<p>$ bundle install</p></blockquote>
+
+<p><strong> Install and configure the default Octopress theme </strong></p>
+
+<blockquote><p>$ rake install</p></blockquote>
+
+<p>Ok, Octopress is now ready to be used.
+The next step in the documentation is how to deploy the site. There are several ways to deploy, but I chose to deploy on Github. Github offers a free hosting service, and I didn&rsquo;t see the need to use or hire a VPS from some provider, since with Octopress I won&rsquo;t need a database (Mysql, etc.), that is, only static pages will be generated and for that Github is more than enough.</p>
+
+<h3>Deploying to Github Pages</h3>
+
+<p>If you don&rsquo;t have one yet, you&rsquo;ll need to create a Github account. Do this if you don&rsquo;t have one.
+My Github username is rodrigodlima, so it will make my blog available at <a href="http://rodrigodlima.github.io.">http://rodrigodlima.github.io.</a> In the old days, it was made available on the &ldquo;.com&rdquo; domain, but now it uses &ldquo;.io&rdquo;.</p>
+
+<p>Create a new repository in the following format: username.github.io, where username is your Github username. In my case, it was rodrigodlima.github.io. If you have a registered domain, Github offers a way to point your domain there, I&rsquo;ll explain better how to do this later.</p>
+
+<p>Now, let&rsquo;s start to see some advantages in using Octopress. It already provides some scripts to facilitate configuration. So, run:</p>
+
+<blockquote><p>$ rake setup_github_pages</p></blockquote>
+
+<p>The script will ask you for the URL of your git repository, so provide it as requested. Ex: git@github.com:rodrigodlima/rodrigodlima.github.io.git.</p>
+
+<p><strong>Important:</strong> It is necessary to insert your public SSH key to be able to deploy. If you don&rsquo;t have a public SSH key, consult the Github documentation to insert your key:</p>
+
+<p><a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
+
+<p>On both Fedora 20 and CentOS 7 I needed to edit the Octopress GemFile and add the following:</p>
+
+<pre><code> gem 'json'
+</code></pre>
+
+<blockquote><p>$ cat Gemfile</p></blockquote>
+
+<pre><code>source "https://rubygems.org"
+group :development do
+    gem 'rake', '~&gt; 10.0'
+    gem 'jekyll', '~&gt; 2.0'
+    gem 'octopress-hooks', '~&gt; 2.2'
+    gem 'octopress-date-format', '~&gt; 2.0'
+    gem 'jekyll-sitemap'
+    gem 'rdiscount', '~&gt; 2.0'
+    gem 'json'
+    gem 'RedCloth', '~&gt; 4.2.9'
+    gem 'haml', '~&gt; 4.0'
+    gem 'compass', '~&gt; 1.0.1'
+    gem 'sass-globbing', '~&gt; 1.0.0'
+    gem 'rubypants', '~&gt; 0.2.0'
+    gem 'rb-fsevent', '~&gt; 0.9'
+    gem 'stringex', '~&gt; 1.4.0'
+end
+    gem 'sinatra', '~&gt; 1.4.2'
+</code></pre>
+
+<p>Without this line, the &ldquo;rake generate&rdquo; command throws an error.</p>
+
+<p>Now yes:</p>
+
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
+
+<p>These two commands will generate the blog and make the first commit to Github. However, you now need to generate a new post to be published. And now comes the advantage of using Octopress. It&rsquo;s very simple to create a new post. Want to see?</p>
+
+<h2>Creating the first post</h2>
+
+<p>To create a new post is very simple:</p>
+
+<pre><code>$ rake new_post["Octopress Installation and Configuration"]
+mkdir -p source/_posts
+Creating new post: source/_posts/2015-01-28-octopress-installation-and-configuration.markdown
+</code></pre>
+
+<p>See that it created the post in the path source/_posts/2015-01-28-octopress-installation-and-configuration.markdown. Now you just need to edit the file with your preferred markdown editor. I use Remarkable:</p>
+
+<p><a href="http://remarkableapp.net/download.html">Remarkable</a></p>
+
+<p>After making the edits you want, save the file. And now you just need to generate the page and send it to Github. These two commands below do this for you:</p>
+
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
+
+<p>Every time you want to create a new post, follow these steps. Simple isn&rsquo;t it? ;-)</p>
+
+<h3>Custom Domains</h3>
+
+<p>As I mentioned at the beginning of the post, Github offers a way to customize your domain, if you wish. For example, I have the domain rodrigolima.blog.br registered and I would like my &ldquo;blog&rdquo; that we just saw hosted on Github, to be accessed through my domain &ldquo;rodrigolima.blog.br&rdquo;. It&rsquo;s very simple to do and it&rsquo;s also in the Octopress documentation.</p>
+
+<blockquote><p>echo &lsquo;rodrigolima.blog.br&rsquo; >> source/CNAME</p></blockquote>
+
+<p>Now, create an &ldquo;A&rdquo; record on your DNS server pointing to IP 192.30.252.153 or 192.30.252.154 which are Github&rsquo;s IPs</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[First Post]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2015/01/27/first-post/"/>
+    <updated>2015-01-27T17:44:47-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2015/01/27/first-post</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve always wanted to have my blog and publish things I want, especially in the IT area, since I&rsquo;ve been working for some time as an Infrastructure Analyst, and I&rsquo;ve been through a lot of things that would be interesting to share and also some things of personal interest and some hobbies, such as travel tips, sports, etc. ;-)
+However, I was always annoyed having to create an infrastructure to publish anything simple, even a text.
+I always had to set up a Wordpress instance, an Apache, etc. And it was even more work to write a post in a standardized and simple way.
+That&rsquo;s when one day while researching some technologies I read something about Octopress. Before reading, I thought: Well, it must be another &ldquo;Wordpress&rdquo; or Wiki type. But I was wrong. I started reading some characteristics of Octopress and I already saw that the proposal was different, as it is a framework for generating static pages and with fantastic integration with Github, without the need to hire a VPS to host your blog.
+How wonderful, I decided to test it. Well, I can say it&rsquo;s not a very simple configuration, it took me about two days to &ldquo;understand&rdquo; how it works and to make it work. But after it&rsquo;s ready, I can say: It&rsquo;s worth every minute lost in the configuration.
+Now, in just a few minutes I generate a new post, version it, and best of all, in plain text, without HTML, Javascripts, Templates, etc&hellip;</p>
+
+<p>As this is the first post and my environment is still in &ldquo;Beta&rdquo; phase, there is still a lot to improve.</p>
+
+<p>I used CentOS 7 and Fedora 20 as Operating Systems and there are some &ldquo;workarounds&rdquo; to make Octopress work, and as soon as I get more familiar with it I will post explaining how to do the configuration.</p>
+
+<p>See you soon!</p>
+]]></content>
+  </entry>
+  
+</feed>

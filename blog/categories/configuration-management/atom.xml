@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: configuration management | rodrigolima.github.io]]></title>
+  <link href="https://rodrigodlima.github.io/blog/categories/configuration-management/atom.xml" rel="self"/>
+  <link href="https://rodrigodlima.github.io/"/>
+  <updated>2025-11-27T02:42:25+00:00</updated>
+  <id>https://rodrigodlima.github.io/</id>
+  <author>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Removing Unmanaged Files with Puppet]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2018/03/01/removing-unmanaged-files-with-puppet/"/>
+    <updated>2018-03-01T21:34:54-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2018/03/01/removing-unmanaged-files-with-puppet</id>
+    <content type="html"><![CDATA[<p>Do you know what Puppet is? If you&rsquo;re a Sysadmin or a Dev, I strongly suggest you start learning about it. Puppet is a software configuration management utility. Puppet&rsquo;s development is coordinated by Puppet Labs. Here&rsquo;s the link: <a href="https://puppet.com/">https://puppet.com/</a>.</p>
+
+<p>I won&rsquo;t go deep into the concepts, I&rsquo;ll just share a tip that can be useful in some situations.</p>
+
+<p>You have multiple Apache vhost configuration files managed by Puppet, for example, but you don&rsquo;t want new files to be created manually that aren&rsquo;t orchestrated/managed by Puppet, as this could cause you to lose control of what&rsquo;s being deployed to production.</p>
+
+<p>To solve this, there&rsquo;s an attribute that can help us with this, and it&rsquo;s from the &ldquo;file&rdquo; resource type: <strong>purge</strong></p>
+
+<pre><code>file { '/etc/httpd/confs.d':
+    ensure  =&gt; 'directory',
+    recurse =&gt; true,
+    purge   =&gt; true,
+}
+
+file { '/etc/httpd/confs.d/www.conf':
+    ensure =&gt; 'present',
+    source =&gt; 'puppet://modules/httpd/www.conf',
+}
+</code></pre>
+
+<p>With the above configuration, Puppet will maintain only the www.conf file in the /etc/httpd/confs.d directory. All manually created files will be removed after the agent communicates with the Puppet server.</p>
+]]></content>
+  </entry>
+  
+</feed>

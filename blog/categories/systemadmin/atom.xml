@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: systemadmin | rodrigolima.github.io]]></title>
+  <link href="https://rodrigodlima.github.io/blog/categories/systemadmin/atom.xml" rel="self"/>
+  <link href="https://rodrigodlima.github.io/"/>
+  <updated>2025-11-27T02:42:25+00:00</updated>
+  <id>https://rodrigodlima.github.io/</id>
+  <author>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Changing Runlevel on CentOS7]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/02/14/changing-runlevel-on-centos7/"/>
+    <updated>2017-02-14T16:10:34-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/02/14/changing-runlevel-on-centos7</id>
+    <content type="html"><![CDATA[<p>Just a quick tip for those who want to change the Runlevel on CentOS7 or RHEL7.</p>
+
+<p>In previous versions, such as CentOS6, you just had to edit the /etc/inittab file and change the runlevel in the following line:</p>
+
+<pre><code>id:3:initdefault:
+</code></pre>
+
+<p>In the example above, the runlevel is set to <b>&ldquo;3&rdquo;</b>. Runlevel 3 means <b>&ldquo;Full multiuser mode&rdquo;</b>, that is, it starts the system normally with network support and mainly in text mode. If you want to change it to start the system with the graphical interface (KDE, Gnome, etc), just change the line above to <b>&ldquo;5&rdquo;</b>.</p>
+
+<p>With the change from Init to Systemd starting from CentOS7 (If you want to know more about this: <a href="http://www.tecmint.com/systemd-replaces-init-in-linux/">Read here</a>, the way the runlevel is changed changes slightly (quite a bit actually ;-)</p>
+
+<h2>Checking current runlevel</h2>
+
+<pre><code>[root@localhost ~] systemctl get-default
+multi-user.target
+</code></pre>
+
+<p>The multi-user.target is equivalent to runlevel &ldquo;3&rdquo;, that is, text mode.</p>
+
+<h2>Changing the runlevel</h2>
+
+<p>If you want to change the runlevel to graphical mode, or &ldquo;runlevel 5&rdquo; as it was known in previous versions:</p>
+
+<pre><code>[root@localhost ~] systemctl set-default graphical.target
+</code></pre>
+
+<p>Just restart the system and you will see that it will start in graphical mode. To check the other Runlevels:</p>
+
+<pre><code>[root@localhost ~] systemctl list-units --type=target
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

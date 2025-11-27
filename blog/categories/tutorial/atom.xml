@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tutorial | rodrigolima.github.io]]></title>
+  <link href="https://rodrigodlima.github.io/blog/categories/tutorial/atom.xml" rel="self"/>
+  <link href="https://rodrigodlima.github.io/"/>
+  <updated>2025-11-27T02:42:25+00:00</updated>
+  <id>https://rodrigodlima.github.io/</id>
+  <author>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Maintaining Octopress Blog on Different Machines]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/01/11/maintaining-octopress-blog-on-different-machines/"/>
+    <updated>2017-01-11T21:38:23-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/01/11/maintaining-octopress-blog-on-different-machines</id>
+    <content type="html"><![CDATA[<p>In this post, I will explain how to maintain your blog with Octopress in different places, or rather, on different machines.
+Maybe you need to write your posts on your workstation at work and sometimes at home for example, or maybe you have reinstalled your OS.</p>
+
+<p>It is not enough to just clone your Octopress repository from Github, as it only &ldquo;clones&rdquo; the blog &ldquo;renders&rdquo; locally.
+The Octopress repository on Github has two branches, <code>source</code> and <code>master</code>. The <code>source</code> branch contains the sources that are used to generate the blog, and the <code>master</code> branch contains the blog itself.</p>
+
+<p>When the local folder is created following the <a href="http://octopress.org/docs/setup">Octopress Setup Guide</a>, the master branch is in the _deploy subfolder. Since this folder starts with an underscore, it is ignored when pushing to the repository: <code>git push origin source</code>. That&rsquo;s why it&rsquo;s necessary to follow these steps:</p>
+
+<h3>Cloning the repository</h3>
+
+<p>First, create an empty directory and do a <code>git init</code> from scratch:</p>
+
+<pre><code>$ mkdir &lt;directory&gt; &amp;&amp; cd &lt;directory&gt; &amp;&amp; git init
+</code></pre>
+
+<p>Add the remote repository of your blog and do a <code>pull</code> of the source branch:</p>
+
+<pre><code>$ git remote add origin git@github.com:username/username.github.io.git
+$ git pull origin source
+</code></pre>
+
+<p>Create the local <code>source</code> branch and remove the local <code>master</code> branch to avoid confusion with the remote branch:</p>
+
+<pre><code>$ git checkout -b source
+$ git branch -D master
+</code></pre>
+
+<p>Now, create the empty _deploy directory and sync with the remote <code>master</code> branch:</p>
+
+<pre><code>$ mkdir _deploy
+$ git init
+$ git remote add origin git@github.com:username/username.github.io.git
+$ git pull origin master
+</code></pre>
+
+<p>Now everything is ready to update the Blog.</p>
+
+<p>Create a new post:</p>
+
+<pre><code>$ rake new_post["New Post"]
+$ rake generate
+$ rake deploy
+</code></pre>
+
+<p>And don&rsquo;t forget to push the source branch:</p>
+
+<pre><code>$ git push origin source
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python Editor]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2017/01/10/python-editor/"/>
+    <updated>2017-01-10T15:35:44-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2017/01/10/python-editor</id>
+    <content type="html"><![CDATA[<p>Just a tip for those who are starting to develop in Python. I recommend using the Atom Editor <a href="https://atom.io/.">https://atom.io/.</a>
+It is a text editor developed by the folks at Github.</p>
+
+<p>And after installing Atom, install the linter-pylama plugin: <a href="https://atom.io/packages/linter-pylama">https://atom.io/packages/linter-pylama</a></p>
+
+<p>With this plugin, it offers you several features and helps you develop following the PEP8 recommendations (Style Guide for Python Code)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clearing Java Cache on Linux]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2015/04/08/clearing-java-cache-on-linux/"/>
+    <updated>2015-04-08T17:54:20-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2015/04/08/clearing-java-cache-on-linux</id>
+    <content type="html"><![CDATA[<p>This is a quick tip for clearing Java cache on Linux.</p>
+
+<p>It&rsquo;s simple. Just open the &ldquo;<strong>Java Control Panel</strong>&rdquo;, to do this, type the command &ldquo;<strong>javaws -viewer</strong>&rdquo; in the terminal.</p>
+
+<pre><code>$ javaws -viewer
+</code></pre>
+
+<p>Now just click the Settings button under &ldquo;Temporary Internet Files&rdquo; and delete the cache.</p>
+
+<p>There are other Java configurations that can be performed in the <strong>Java Control Center</strong>, but I won&rsquo;t go into details here.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Installation and Configuration]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2015/01/28/octopress-installation-and-configuration/"/>
+    <updated>2015-01-28T11:40:58-02:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2015/01/28/octopress-installation-and-configuration</id>
+    <content type="html"><![CDATA[<p>I usually use 2 or 3 devices to write my posts, I use my work laptop, my personal MacBook and sometimes my computer at home. With that, I thought it would be interesting to make my blog code available on some virtual cloud drive, so I can post any article on any device I&rsquo;m using, just needing to have it configured for that task. Since I&rsquo;ve been using Dropbox for a while, I thought it would be interesting to keep my blog there.</p>
+
+<p>The objective here is to explain the installation and configuration process of Octopress. Most of the steps here are in the official Octopress documentation, but there are some extra details that I had some trouble with and it&rsquo;s important to highlight here.</p>
+
+<p>Let&rsquo;s go then.</p>
+
+<p><strong> Install Octopress dependencies: </strong></p>
+
+<blockquote><p>$ sudo yum install git ruby rubygems ruby-devel</p></blockquote>
+
+<p>In the Octopress documentation it is suggested to install some ExecJS runtime JavaScript. One of them is nodejs. In the case of Fedora, it is necessary to install the RPM package, just installing the Gem doesn&rsquo;t work. It is also necessary to have the EPEL repository installed and configured.</p>
+
+<blockquote><p>$ sudo yum install nodejs</p></blockquote>
+
+<p><strong> Download the latest version of Octopress </strong></p>
+
+<p>Note: Download directly to your Dropbox directory, usually in ~/Dropbox</p>
+
+<blockquote><p>$ pwd</p>
+
+<p>/home/rodrigo.lima/Dropbox/Blog</p>
+
+<p>$ cd octopress/</p>
+
+<p>$ pwd</p>
+
+<p>/home/rodrigo.lima/Dropbox/Blog/octopress</p></blockquote>
+
+<p><strong> Also install some necessary Ruby dependencies: </strong></p>
+
+<blockquote><p>$ gem install execjs</p>
+
+<p>$ gem install bundler</p>
+
+<p>$ bundle install</p></blockquote>
+
+<p><strong> Install and configure the default Octopress theme </strong></p>
+
+<blockquote><p>$ rake install</p></blockquote>
+
+<p>Ok, Octopress is now ready to be used.
+The next step in the documentation is how to deploy the site. There are several ways to deploy, but I chose to deploy on Github. Github offers a free hosting service, and I didn&rsquo;t see the need to use or hire a VPS from some provider, since with Octopress I won&rsquo;t need a database (Mysql, etc.), that is, only static pages will be generated and for that Github is more than enough.</p>
+
+<h3>Deploying to Github Pages</h3>
+
+<p>If you don&rsquo;t have one yet, you&rsquo;ll need to create a Github account. Do this if you don&rsquo;t have one.
+My Github username is rodrigodlima, so it will make my blog available at <a href="http://rodrigodlima.github.io.">http://rodrigodlima.github.io.</a> In the old days, it was made available on the &ldquo;.com&rdquo; domain, but now it uses &ldquo;.io&rdquo;.</p>
+
+<p>Create a new repository in the following format: username.github.io, where username is your Github username. In my case, it was rodrigodlima.github.io. If you have a registered domain, Github offers a way to point your domain there, I&rsquo;ll explain better how to do this later.</p>
+
+<p>Now, let&rsquo;s start to see some advantages in using Octopress. It already provides some scripts to facilitate configuration. So, run:</p>
+
+<blockquote><p>$ rake setup_github_pages</p></blockquote>
+
+<p>The script will ask you for the URL of your git repository, so provide it as requested. Ex: git@github.com:rodrigodlima/rodrigodlima.github.io.git.</p>
+
+<p><strong>Important:</strong> It is necessary to insert your public SSH key to be able to deploy. If you don&rsquo;t have a public SSH key, consult the Github documentation to insert your key:</p>
+
+<p><a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
+
+<p>On both Fedora 20 and CentOS 7 I needed to edit the Octopress GemFile and add the following:</p>
+
+<pre><code> gem 'json'
+</code></pre>
+
+<blockquote><p>$ cat Gemfile</p></blockquote>
+
+<pre><code>source "https://rubygems.org"
+group :development do
+    gem 'rake', '~&gt; 10.0'
+    gem 'jekyll', '~&gt; 2.0'
+    gem 'octopress-hooks', '~&gt; 2.2'
+    gem 'octopress-date-format', '~&gt; 2.0'
+    gem 'jekyll-sitemap'
+    gem 'rdiscount', '~&gt; 2.0'
+    gem 'json'
+    gem 'RedCloth', '~&gt; 4.2.9'
+    gem 'haml', '~&gt; 4.0'
+    gem 'compass', '~&gt; 1.0.1'
+    gem 'sass-globbing', '~&gt; 1.0.0'
+    gem 'rubypants', '~&gt; 0.2.0'
+    gem 'rb-fsevent', '~&gt; 0.9'
+    gem 'stringex', '~&gt; 1.4.0'
+end
+    gem 'sinatra', '~&gt; 1.4.2'
+</code></pre>
+
+<p>Without this line, the &ldquo;rake generate&rdquo; command throws an error.</p>
+
+<p>Now yes:</p>
+
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
+
+<p>These two commands will generate the blog and make the first commit to Github. However, you now need to generate a new post to be published. And now comes the advantage of using Octopress. It&rsquo;s very simple to create a new post. Want to see?</p>
+
+<h2>Creating the first post</h2>
+
+<p>To create a new post is very simple:</p>
+
+<pre><code>$ rake new_post["Octopress Installation and Configuration"]
+mkdir -p source/_posts
+Creating new post: source/_posts/2015-01-28-octopress-installation-and-configuration.markdown
+</code></pre>
+
+<p>See that it created the post in the path source/_posts/2015-01-28-octopress-installation-and-configuration.markdown. Now you just need to edit the file with your preferred markdown editor. I use Remarkable:</p>
+
+<p><a href="http://remarkableapp.net/download.html">Remarkable</a></p>
+
+<p>After making the edits you want, save the file. And now you just need to generate the page and send it to Github. These two commands below do this for you:</p>
+
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
+
+<p>Every time you want to create a new post, follow these steps. Simple isn&rsquo;t it? ;-)</p>
+
+<h3>Custom Domains</h3>
+
+<p>As I mentioned at the beginning of the post, Github offers a way to customize your domain, if you wish. For example, I have the domain rodrigolima.blog.br registered and I would like my &ldquo;blog&rdquo; that we just saw hosted on Github, to be accessed through my domain &ldquo;rodrigolima.blog.br&rdquo;. It&rsquo;s very simple to do and it&rsquo;s also in the Octopress documentation.</p>
+
+<blockquote><p>echo &lsquo;rodrigolima.blog.br&rsquo; >> source/CNAME</p></blockquote>
+
+<p>Now, create an &ldquo;A&rdquo; record on your DNS server pointing to IP 192.30.252.153 or 192.30.252.154 which are Github&rsquo;s IPs</p>
+]]></content>
+  </entry>
+  
+</feed>

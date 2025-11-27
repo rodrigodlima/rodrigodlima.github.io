@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: java | rodrigolima.github.io]]></title>
+  <link href="https://rodrigodlima.github.io/blog/categories/java/atom.xml" rel="self"/>
+  <link href="https://rodrigodlima.github.io/"/>
+  <updated>2025-11-27T02:42:25+00:00</updated>
+  <id>https://rodrigodlima.github.io/</id>
+  <author>
+    <name><![CDATA[Rodrigo de Lima Silva]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Clearing Java Cache on Linux]]></title>
+    <link href="https://rodrigodlima.github.io/blog/2015/04/08/clearing-java-cache-on-linux/"/>
+    <updated>2015-04-08T17:54:20-03:00</updated>
+    <id>https://rodrigodlima.github.io/blog/2015/04/08/clearing-java-cache-on-linux</id>
+    <content type="html"><![CDATA[<p>This is a quick tip for clearing Java cache on Linux.</p>
+
+<p>It&rsquo;s simple. Just open the &ldquo;<strong>Java Control Panel</strong>&rdquo;, to do this, type the command &ldquo;<strong>javaws -viewer</strong>&rdquo; in the terminal.</p>
+
+<pre><code>$ javaws -viewer
+</code></pre>
+
+<p>Now just click the Settings button under &ldquo;Temporary Internet Files&rdquo; and delete the cache.</p>
+
+<p>There are other Java configurations that can be performed in the <strong>Java Control Center</strong>, but I won&rsquo;t go into details here.</p>
+]]></content>
+  </entry>
+  
+</feed>

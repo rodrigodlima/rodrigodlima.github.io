@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopress Installation and Configuration - rodrigolima.github.io</title>
+  <meta name="author" content="Rodrigo de Lima Silva">
+
+  
+  <meta name="description" content="I usually use 2 or 3 devices to write my posts, I use my work laptop, my personal MacBook and sometimes my computer at home. With that, I thought it &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://rodrigodlima.github.io/blog/2015/01/28/octopress-installation-and-configuration/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="rodrigolima.github.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-61707751-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">rodrigolima.github.io</a></h1>
+  
+    <h2>$echo something | sed &#8216;s/something/Geek life, Information Technology, daily life and related topics/g&#8217;</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="rodrigodlima.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/indice">Index</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Octopress Installation and Configuration</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-28T11:40:58-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:40 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I usually use 2 or 3 devices to write my posts, I use my work laptop, my personal MacBook and sometimes my computer at home. With that, I thought it would be interesting to make my blog code available on some virtual cloud drive, so I can post any article on any device I&rsquo;m using, just needing to have it configured for that task. Since I&rsquo;ve been using Dropbox for a while, I thought it would be interesting to keep my blog there.</p>
+
+<p>The objective here is to explain the installation and configuration process of Octopress. Most of the steps here are in the official Octopress documentation, but there are some extra details that I had some trouble with and it&rsquo;s important to highlight here.</p>
+
+<p>Let&rsquo;s go then.</p>
+
+<p><strong> Install Octopress dependencies: </strong></p>
+
+<blockquote><p>$ sudo yum install git ruby rubygems ruby-devel</p></blockquote>
+
+<p>In the Octopress documentation it is suggested to install some ExecJS runtime JavaScript. One of them is nodejs. In the case of Fedora, it is necessary to install the RPM package, just installing the Gem doesn&rsquo;t work. It is also necessary to have the EPEL repository installed and configured.</p>
+
+<blockquote><p>$ sudo yum install nodejs</p></blockquote>
+
+<p><strong> Download the latest version of Octopress </strong></p>
+
+<p>Note: Download directly to your Dropbox directory, usually in ~/Dropbox</p>
+
+<blockquote><p>$ pwd</p>
+
+<p>/home/rodrigo.lima/Dropbox/Blog</p>
+
+<p>$ cd octopress/</p>
+
+<p>$ pwd</p>
+
+<p>/home/rodrigo.lima/Dropbox/Blog/octopress</p></blockquote>
+
+<p><strong> Also install some necessary Ruby dependencies: </strong></p>
+
+<blockquote><p>$ gem install execjs</p>
+
+<p>$ gem install bundler</p>
+
+<p>$ bundle install</p></blockquote>
+
+<p><strong> Install and configure the default Octopress theme </strong></p>
+
+<blockquote><p>$ rake install</p></blockquote>
+
+<p>Ok, Octopress is now ready to be used.
+The next step in the documentation is how to deploy the site. There are several ways to deploy, but I chose to deploy on Github. Github offers a free hosting service, and I didn&rsquo;t see the need to use or hire a VPS from some provider, since with Octopress I won&rsquo;t need a database (Mysql, etc.), that is, only static pages will be generated and for that Github is more than enough.</p>
+
+<h3>Deploying to Github Pages</h3>
+
+<p>If you don&rsquo;t have one yet, you&rsquo;ll need to create a Github account. Do this if you don&rsquo;t have one.
+My Github username is rodrigodlima, so it will make my blog available at <a href="http://rodrigodlima.github.io.">http://rodrigodlima.github.io.</a> In the old days, it was made available on the &ldquo;.com&rdquo; domain, but now it uses &ldquo;.io&rdquo;.</p>
+
+<p>Create a new repository in the following format: username.github.io, where username is your Github username. In my case, it was rodrigodlima.github.io. If you have a registered domain, Github offers a way to point your domain there, I&rsquo;ll explain better how to do this later.</p>
+
+<p>Now, let&rsquo;s start to see some advantages in using Octopress. It already provides some scripts to facilitate configuration. So, run:</p>
+
+<blockquote><p>$ rake setup_github_pages</p></blockquote>
+
+<p>The script will ask you for the URL of your git repository, so provide it as requested. Ex: git@github.com:rodrigodlima/rodrigodlima.github.io.git.</p>
+
+<p><strong>Important:</strong> It is necessary to insert your public SSH key to be able to deploy. If you don&rsquo;t have a public SSH key, consult the Github documentation to insert your key:</p>
+
+<p><a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></p>
+
+<p>On both Fedora 20 and CentOS 7 I needed to edit the Octopress GemFile and add the following:</p>
+
+<pre><code> gem 'json'
+</code></pre>
+
+<blockquote><p>$ cat Gemfile</p></blockquote>
+
+<pre><code>source "https://rubygems.org"
+group :development do
+    gem 'rake', '~&gt; 10.0'
+    gem 'jekyll', '~&gt; 2.0'
+    gem 'octopress-hooks', '~&gt; 2.2'
+    gem 'octopress-date-format', '~&gt; 2.0'
+    gem 'jekyll-sitemap'
+    gem 'rdiscount', '~&gt; 2.0'
+    gem 'json'
+    gem 'RedCloth', '~&gt; 4.2.9'
+    gem 'haml', '~&gt; 4.0'
+    gem 'compass', '~&gt; 1.0.1'
+    gem 'sass-globbing', '~&gt; 1.0.0'
+    gem 'rubypants', '~&gt; 0.2.0'
+    gem 'rb-fsevent', '~&gt; 0.9'
+    gem 'stringex', '~&gt; 1.4.0'
+end
+    gem 'sinatra', '~&gt; 1.4.2'
+</code></pre>
+
+<p>Without this line, the &ldquo;rake generate&rdquo; command throws an error.</p>
+
+<p>Now yes:</p>
+
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
+
+<p>These two commands will generate the blog and make the first commit to Github. However, you now need to generate a new post to be published. And now comes the advantage of using Octopress. It&rsquo;s very simple to create a new post. Want to see?</p>
+
+<h2>Creating the first post</h2>
+
+<p>To create a new post is very simple:</p>
+
+<pre><code>$ rake new_post["Octopress Installation and Configuration"]
+mkdir -p source/_posts
+Creating new post: source/_posts/2015-01-28-octopress-installation-and-configuration.markdown
+</code></pre>
+
+<p>See that it created the post in the path source/_posts/2015-01-28-octopress-installation-and-configuration.markdown. Now you just need to edit the file with your preferred markdown editor. I use Remarkable:</p>
+
+<p><a href="http://remarkableapp.net/download.html">Remarkable</a></p>
+
+<p>After making the edits you want, save the file. And now you just need to generate the page and send it to Github. These two commands below do this for you:</p>
+
+<blockquote><p>$ rake generate</p>
+
+<p>$ rake deploy</p></blockquote>
+
+<p>Every time you want to create a new post, follow these steps. Simple isn&rsquo;t it? ;-)</p>
+
+<h3>Custom Domains</h3>
+
+<p>As I mentioned at the beginning of the post, Github offers a way to customize your domain, if you wish. For example, I have the domain rodrigolima.blog.br registered and I would like my &ldquo;blog&rdquo; that we just saw hosted on Github, to be accessed through my domain &ldquo;rodrigolima.blog.br&rdquo;. It&rsquo;s very simple to do and it&rsquo;s also in the Octopress documentation.</p>
+
+<blockquote><p>echo &lsquo;rodrigolima.blog.br&rsquo; >> source/CNAME</p></blockquote>
+
+<p>Now, create an &ldquo;A&rdquo; record on your DNS server pointing to IP 192.30.252.153 or 192.30.252.154 which are Github&rsquo;s IPs</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rodrigo de Lima Silva</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-01-28T11:40:58-02:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:40 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/blogging/'>blogging</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/tutorial/'>tutorial</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="https://rodrigodlima.github.io/blog/2015/01/28/octopress-installation-and-configuration/" data-via="rodrigodlima" data-counturl="https://rodrigodlima.github.io/blog/2015/01/28/octopress-installation-and-configuration/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/27/first-post/" title="Previous Post: First Post">&laquo; First Post</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/04/08/clearing-java-cache-on-linux/" title="Next Post: Clearing Java Cache on Linux">Clearing Java Cache on Linux &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About me</h1>
+  <p>DevOps Engineer with several years of experience in infrastructure and automation. I hold multiple certifications including RHCE (Red Hat Certified Professional), LPIC1 (Linux Professional Institute), CKA (Certified Kubernetes Administrator), AWS Certified Cloud Practitioner, and Azure Fundamentals. Specialized in configuration management, container orchestration, and cloud infrastructure using tools like Puppet, Ansible, Kubernetes. Deep understanding of Internal Developer Platforms (IDP) and platform engineering practices, including tools like Backstage , Crossplane and Argocd aimed at streamlining developer workflows and enhancing platform self-service capabilities.
+Passionate about automation, Python development, and sharing knowledge about DevOps practices, Linux systems administration, and cloud technologies. Feel free to reach out!</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/03/01/removing-unmanaged-files-with-puppet/">Removing Unmanaged Files with Puppet</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/20/automating-commands-with-fabric/">Automating Commands with Fabric</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/02/14/changing-runlevel-on-centos7/">Changing Runlevel on CentOS7</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/11/maintaining-octopress-blog-on-different-machines/">Maintaining Octopress Blog on Different Machines</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/01/10/bash-completion-for-macos-sierra/">Bash Completion for MacOS Sierra</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rodrigodlima">@rodrigodlima</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rodrigodlima',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/rodrigodlima?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2025 - Rodrigo de Lima Silva -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
